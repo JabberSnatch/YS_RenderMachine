@@ -10,7 +10,13 @@ namespace ys_render_machine {
 struct vec4
 {
 	vec4() { memset(E, 0, sizeof(x) * 4); }
-	
+	vec4(float _x, float _y, float _z, float _w = 1.0f)
+		: x(_x), y(_y), z(_z), w(_w)
+	{}
+
+	vec4(const vec4& other) { memcpy(E, other.E, sizeof(x) * 4); }
+	vec4(vec4&& other) { memcpy(E, other.E, sizeof(x) * 4); }
+
 	vec4&	operator = (const vec4& other)
 	{
 		memcpy(E, other.E, sizeof(x) * 4);

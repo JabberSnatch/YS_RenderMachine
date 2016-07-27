@@ -41,6 +41,12 @@ Scene::~Scene()
 			delete current_node;
 		}
 	}
+
+	for (std::vector<Mesh*>::iterator ite = m_meshes.begin();
+		 ite != m_meshes.end(); ++ite)
+	{
+		delete *ite;
+	}
 }
 
 

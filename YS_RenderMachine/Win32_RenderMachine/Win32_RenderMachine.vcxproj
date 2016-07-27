@@ -189,12 +189,17 @@ if %errorlevel% leq 1 exit 0 else exit %errorlevel%
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\MeshFactory.cpp" />
     <ClCompile Include="src\Node.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Win32_RenderMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Logger.hpp" />
     <ClInclude Include="include\mat4.hpp" />
+    <ClInclude Include="include\Mesh.hpp" />
+    <ClInclude Include="include\MeshFactory.hpp" />
     <ClInclude Include="include\Node.hpp" />
     <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\vec4.hpp" />

@@ -20,13 +20,15 @@
 #include "mat4.hpp"
 #include "Node.hpp"
 #include "Scene.hpp"
+#include "Logger.hpp"
+#include "MeshFactory.hpp"
 
 
 // TODO:
-// [ ] Model loading
+// [?] Model loading
 	// [X] Basic data structures (vec4, mat4, Node, Scene)
-	// [ ] Rendering data structures (Mesh, Bone)
-	// [ ] Assimp -> ys_RenderMachine conversion
+	// [X] Rendering data structures (Mesh, Bone)
+	// [?] Assimp -> ys_RenderMachine conversion
 // [ ] Shader loading (consider SPIR-V, subroutines)
 // [ ] Basic scene display
 
@@ -36,14 +38,6 @@
 // [ ] Antialiasing
 // [ ] Particles ?
 
-#define YS_LOG_TO_FILE
-
-#ifndef YS_LOG_TO_FILE
-#define LOG(msg) std::cout << (msg) << std::endl
-#else
-std::fstream	log_file;
-#define LOG(msg) log_file << (msg) << std::endl
-#endif
 
 static const wchar_t	kAppName[] = { L"RenderMachine" };
 static const wchar_t	kWinName[] = { L"YS_RenderMachine" };
@@ -212,19 +206,20 @@ WinMain(HINSTANCE	_hInstance,
 
 	delete test_scene;
 
+	ys_render_machine::Logger::ClearLogFile();
 
-#ifdef YS_LOG_TO_FILE
-	log_file.open("output.yslog", std::ios_base::out);
-	log_file.clear();
-#endif
 
+	//std::string			path = "resource/Sora/Anti Sora.dae";
+	std::string			path = "resource/SquallFFVIII/Squall.dae";
+	ys_render_machine::Scene loading_scene;
+	ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
+
+	// ASSIMP TESTS
 	Assimp::Importer	main_importer;
 	aiString			extensions;
 	main_importer.GetExtensionList(extensions);
 	std::cout << "Available extensions : " << extensions.C_Str() << std::endl;
 
-	//std::string			path = "resource/SquallFFVIII/Squall.dae";
-	std::string			path = "resource/Sora/Anti Sora.dae";
 	assert(std::fstream(path).good());
 
 	const aiScene* scene = main_importer.ReadFile(path, 0);
@@ -340,7 +335,7 @@ WinMain(HINSTANCE	_hInstance,
 		if (current_node->mParent)
 			LOG(std::string("Parent : ") + current_node->mParent->mName.C_Str());
 
-		if (current_node->mNumMeshes)
+		//if (current_node->mNumMeshes)
 		{
 			LOG("Transformation : ");
 			aiVector3D position, scaling;
@@ -356,6 +351,15 @@ WinMain(HINSTANCE	_hInstance,
 				std::to_string(rotation.y) + "; " +
 				std::to_string(rotation.z) + "; " +
 				std::to_string(rotation.w));
+
+			for (unsigned int i = 0; i < current_node->mNumMeshes; ++i)
+			{
+				aiMesh*		mesh = scene->mMeshes[current_node->mMeshes[i]];
+				for (unsigned int j = 0; j < mesh->mNumBones; ++j)
+				{
+					LOG(std::string("Bone : ") + mesh->mBones[j]->mName.C_Str());
+				}
+			}
 		}
 
 		LOG("Mesh count : " + std::to_string(current_node->mNumMeshes));
