@@ -1,0 +1,1482 @@
+Mesh count : 4
+============================
+0 : 
+Poly count : 68
+Vertex count : 204
+Bones count : 4
+Material index : 0
+============================
+1 : 
+Poly count : 1491
+Vertex count : 4473
+Bones count : 57
+Material index : 1
+============================
+2 : 
+Poly count : 48
+Vertex count : 144
+Bones count : 1
+Material index : 2
+============================
+3 : 
+Poly count : 1417
+Vertex count : 4251
+Bones count : 75
+Material index : 0
+
+Material count : 3
+============================
+0 : 
+Property count : 20
+Shading mode : phong
+Diffuse     : 0.000000; 0.000000; 0.000000
+Specular    : 0.000000; 0.000000; 0.000000
+Ambient     : 0.000000; 0.000000; 0.000000
+Emissive    : 0.000000; 0.000000; 0.000000
+Transparent : 0.000000; 0.000000; 0.000000
+Diffuse map count : 1
+Diffuse map : C:/Users/Telespentry/Desktop/khdump/noesis obj output/htlf/texture000.png
+============================
+1 : 
+Property count : 20
+Shading mode : phong
+Diffuse     : 0.000000; 0.000000; 0.000000
+Specular    : 0.000000; 0.000000; 0.000000
+Ambient     : 0.000000; 0.000000; 0.000000
+Emissive    : 0.000000; 0.000000; 0.000000
+Transparent : 0.000000; 0.000000; 0.000000
+Diffuse map count : 1
+Diffuse map : C:/Users/Telespentry/Desktop/khdump/noesis obj output/htlf/texture001.png
+============================
+2 : 
+Property count : 20
+Shading mode : phong
+Diffuse     : 0.000000; 0.000000; 0.000000
+Specular    : 0.000000; 0.000000; 0.000000
+Ambient     : 0.000000; 0.000000; 0.000000
+Emissive    : 0.000000; 0.000000; 0.000000
+Transparent : 0.000000; 0.000000; 0.000000
+Diffuse map count : 1
+Diffuse map : C:/Users/Telespentry/Desktop/khdump/noesis obj output/htlf/texture002.png
+
+Anim count : 0
+
+Nodes : 
+===========================
+0 : Scene
+Mesh count : 0
+Child count : 5
+Child 0 : Armature
+Child 1 : mesh2
+Child 2 : mesh1
+Child 3 : mesh3
+Child 4 : mesh0
+===========================
+1 : mesh0
+Parent : Scene
+Transformation : 
+Position : 0.000000; 0.000000; 0.000000
+Scaling  : 1.000000; 1.000000; 1.000000
+Rotation : 0.000000; 0.000000; 0.000000; 1.000000
+Mesh count : 1
+Child count : 0
+===========================
+2 : mesh3
+Parent : Scene
+Transformation : 
+Position : 0.000000; 0.000000; 0.000000
+Scaling  : 1.000000; 1.000000; 1.000000
+Rotation : 0.000000; 0.000000; 0.000000; 1.000000
+Mesh count : 1
+Child count : 0
+===========================
+3 : mesh1
+Parent : Scene
+Transformation : 
+Position : 0.000000; 0.000000; 0.000000
+Scaling  : 1.000000; 1.000000; 1.000000
+Rotation : 0.000000; 0.000000; 0.000000; 1.000000
+Mesh count : 1
+Child count : 0
+===========================
+4 : mesh2
+Parent : Scene
+Transformation : 
+Position : 0.000000; 0.000000; 0.000000
+Scaling  : 1.000000; 1.000000; 1.000000
+Rotation : 0.000000; 0.000000; 0.000000; 1.000000
+Mesh count : 1
+Child count : 0
+===========================
+5 : Armature
+Parent : Scene
+Mesh count : 0
+Child count : 1
+Child 0 : bone000
+===========================
+6 : bone000
+Parent : Armature
+Mesh count : 0
+Child count : 2
+Child 0 : bone001
+Child 1 : bone064
+===========================
+7 : bone064
+Parent : bone000
+Mesh count : 0
+Child count : 1
+Child 0 : bone065
+===========================
+8 : bone065
+Parent : bone064
+Mesh count : 0
+Child count : 1
+Child 0 : bone066
+===========================
+9 : bone066
+Parent : bone065
+Mesh count : 0
+Child count : 1
+Child 0 : bone067
+===========================
+10 : bone067
+Parent : bone066
+Mesh count : 0
+Child count : 1
+Child 0 : bone068
+===========================
+11 : bone068
+Parent : bone067
+Mesh count : 0
+Child count : 20
+Child 0 : bone069
+Child 1 : bone071
+Child 2 : bone074
+Child 3 : bone116
+Child 4 : bone121
+Child 5 : bone126
+Child 6 : bone128
+Child 7 : bone130
+Child 8 : bone132
+Child 9 : bone134
+Child 10 : bone136
+Child 11 : bone164
+Child 12 : bone166
+Child 13 : bone208
+Child 14 : bone213
+Child 15 : bone218
+Child 16 : bone220
+Child 17 : bone222
+Child 18 : bone224
+Child 19 : bone226
+===========================
+12 : bone226
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone227
+===========================
+13 : bone227
+Parent : bone226
+Mesh count : 0
+Child count : 0
+===========================
+14 : bone224
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone225
+===========================
+15 : bone225
+Parent : bone224
+Mesh count : 0
+Child count : 0
+===========================
+16 : bone222
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone223
+===========================
+17 : bone223
+Parent : bone222
+Mesh count : 0
+Child count : 0
+===========================
+18 : bone220
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone221
+===========================
+19 : bone221
+Parent : bone220
+Mesh count : 0
+Child count : 0
+===========================
+20 : bone218
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone219
+===========================
+21 : bone219
+Parent : bone218
+Mesh count : 0
+Child count : 0
+===========================
+22 : bone213
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone214
+===========================
+23 : bone214
+Parent : bone213
+Mesh count : 0
+Child count : 1
+Child 0 : bone215
+===========================
+24 : bone215
+Parent : bone214
+Mesh count : 0
+Child count : 1
+Child 0 : bone216
+===========================
+25 : bone216
+Parent : bone215
+Mesh count : 0
+Child count : 1
+Child 0 : bone217
+===========================
+26 : bone217
+Parent : bone216
+Mesh count : 0
+Child count : 0
+===========================
+27 : bone208
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone209
+===========================
+28 : bone209
+Parent : bone208
+Mesh count : 0
+Child count : 1
+Child 0 : bone210
+===========================
+29 : bone210
+Parent : bone209
+Mesh count : 0
+Child count : 1
+Child 0 : bone211
+===========================
+30 : bone211
+Parent : bone210
+Mesh count : 0
+Child count : 1
+Child 0 : bone212
+===========================
+31 : bone212
+Parent : bone211
+Mesh count : 0
+Child count : 0
+===========================
+32 : bone166
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone167
+===========================
+33 : bone167
+Parent : bone166
+Mesh count : 0
+Child count : 1
+Child 0 : bone168
+===========================
+34 : bone168
+Parent : bone167
+Mesh count : 0
+Child count : 1
+Child 0 : bone169
+===========================
+35 : bone169
+Parent : bone168
+Mesh count : 0
+Child count : 1
+Child 0 : bone170
+===========================
+36 : bone170
+Parent : bone169
+Mesh count : 0
+Child count : 2
+Child 0 : bone171
+Child 1 : bone201
+===========================
+37 : bone201
+Parent : bone170
+Mesh count : 0
+Child count : 1
+Child 0 : bone202
+===========================
+38 : bone202
+Parent : bone201
+Mesh count : 0
+Child count : 1
+Child 0 : bone203
+===========================
+39 : bone203
+Parent : bone202
+Mesh count : 0
+Child count : 2
+Child 0 : bone204
+Child 1 : bone206
+===========================
+40 : bone206
+Parent : bone203
+Mesh count : 0
+Child count : 1
+Child 0 : bone207
+===========================
+41 : bone207
+Parent : bone206
+Mesh count : 0
+Child count : 0
+===========================
+42 : bone204
+Parent : bone203
+Mesh count : 0
+Child count : 1
+Child 0 : bone205
+===========================
+43 : bone205
+Parent : bone204
+Mesh count : 0
+Child count : 0
+===========================
+44 : bone171
+Parent : bone170
+Mesh count : 0
+Child count : 1
+Child 0 : bone172
+===========================
+45 : bone172
+Parent : bone171
+Mesh count : 0
+Child count : 1
+Child 0 : bone173
+===========================
+46 : bone173
+Parent : bone172
+Mesh count : 0
+Child count : 1
+Child 0 : bone174
+===========================
+47 : bone174
+Parent : bone173
+Mesh count : 0
+Child count : 1
+Child 0 : bone175
+===========================
+48 : bone175
+Parent : bone174
+Mesh count : 0
+Child count : 1
+Child 0 : bone176
+===========================
+49 : bone176
+Parent : bone175
+Mesh count : 0
+Child count : 1
+Child 0 : bone177
+===========================
+50 : bone177
+Parent : bone176
+Mesh count : 0
+Child count : 1
+Child 0 : bone178
+===========================
+51 : bone178
+Parent : bone177
+Mesh count : 0
+Child count : 5
+Child 0 : bone179
+Child 1 : bone185
+Child 2 : bone189
+Child 3 : bone193
+Child 4 : bone197
+===========================
+52 : bone197
+Parent : bone178
+Mesh count : 0
+Child count : 1
+Child 0 : bone198
+===========================
+53 : bone198
+Parent : bone197
+Mesh count : 0
+Child count : 1
+Child 0 : bone199
+===========================
+54 : bone199
+Parent : bone198
+Mesh count : 0
+Child count : 1
+Child 0 : bone200
+===========================
+55 : bone200
+Parent : bone199
+Mesh count : 0
+Child count : 0
+===========================
+56 : bone193
+Parent : bone178
+Mesh count : 0
+Child count : 1
+Child 0 : bone194
+===========================
+57 : bone194
+Parent : bone193
+Mesh count : 0
+Child count : 1
+Child 0 : bone195
+===========================
+58 : bone195
+Parent : bone194
+Mesh count : 0
+Child count : 1
+Child 0 : bone196
+===========================
+59 : bone196
+Parent : bone195
+Mesh count : 0
+Child count : 0
+===========================
+60 : bone189
+Parent : bone178
+Mesh count : 0
+Child count : 1
+Child 0 : bone190
+===========================
+61 : bone190
+Parent : bone189
+Mesh count : 0
+Child count : 1
+Child 0 : bone191
+===========================
+62 : bone191
+Parent : bone190
+Mesh count : 0
+Child count : 1
+Child 0 : bone192
+===========================
+63 : bone192
+Parent : bone191
+Mesh count : 0
+Child count : 0
+===========================
+64 : bone185
+Parent : bone178
+Mesh count : 0
+Child count : 1
+Child 0 : bone186
+===========================
+65 : bone186
+Parent : bone185
+Mesh count : 0
+Child count : 1
+Child 0 : bone187
+===========================
+66 : bone187
+Parent : bone186
+Mesh count : 0
+Child count : 1
+Child 0 : bone188
+===========================
+67 : bone188
+Parent : bone187
+Mesh count : 0
+Child count : 0
+===========================
+68 : bone179
+Parent : bone178
+Mesh count : 0
+Child count : 1
+Child 0 : bone180
+===========================
+69 : bone180
+Parent : bone179
+Mesh count : 0
+Child count : 1
+Child 0 : bone181
+===========================
+70 : bone181
+Parent : bone180
+Mesh count : 0
+Child count : 1
+Child 0 : bone182
+===========================
+71 : bone182
+Parent : bone181
+Mesh count : 0
+Child count : 1
+Child 0 : bone183
+===========================
+72 : bone183
+Parent : bone182
+Mesh count : 0
+Child count : 1
+Child 0 : bone184
+===========================
+73 : bone184
+Parent : bone183
+Mesh count : 0
+Child count : 0
+===========================
+74 : bone164
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone165
+===========================
+75 : bone165
+Parent : bone164
+Mesh count : 0
+Child count : 0
+===========================
+76 : bone136
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone137
+===========================
+77 : bone137
+Parent : bone136
+Mesh count : 0
+Child count : 1
+Child 0 : bone138
+===========================
+78 : bone138
+Parent : bone137
+Mesh count : 0
+Child count : 1
+Child 0 : bone139
+===========================
+79 : bone139
+Parent : bone138
+Mesh count : 0
+Child count : 1
+Child 0 : bone140
+===========================
+80 : bone140
+Parent : bone139
+Mesh count : 0
+Child count : 1
+Child 0 : bone141
+===========================
+81 : bone141
+Parent : bone140
+Mesh count : 0
+Child count : 11
+Child 0 : bone142
+Child 1 : bone144
+Child 2 : bone146
+Child 3 : bone148
+Child 4 : bone150
+Child 5 : bone152
+Child 6 : bone154
+Child 7 : bone156
+Child 8 : bone158
+Child 9 : bone160
+Child 10 : bone162
+===========================
+82 : bone162
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone163
+===========================
+83 : bone163
+Parent : bone162
+Mesh count : 0
+Child count : 0
+===========================
+84 : bone160
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone161
+===========================
+85 : bone161
+Parent : bone160
+Mesh count : 0
+Child count : 0
+===========================
+86 : bone158
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone159
+===========================
+87 : bone159
+Parent : bone158
+Mesh count : 0
+Child count : 0
+===========================
+88 : bone156
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone157
+===========================
+89 : bone157
+Parent : bone156
+Mesh count : 0
+Child count : 0
+===========================
+90 : bone154
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone155
+===========================
+91 : bone155
+Parent : bone154
+Mesh count : 0
+Child count : 0
+===========================
+92 : bone152
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone153
+===========================
+93 : bone153
+Parent : bone152
+Mesh count : 0
+Child count : 0
+===========================
+94 : bone150
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone151
+===========================
+95 : bone151
+Parent : bone150
+Mesh count : 0
+Child count : 0
+===========================
+96 : bone148
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone149
+===========================
+97 : bone149
+Parent : bone148
+Mesh count : 0
+Child count : 0
+===========================
+98 : bone146
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone147
+===========================
+99 : bone147
+Parent : bone146
+Mesh count : 0
+Child count : 0
+===========================
+100 : bone144
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone145
+===========================
+101 : bone145
+Parent : bone144
+Mesh count : 0
+Child count : 0
+===========================
+102 : bone142
+Parent : bone141
+Mesh count : 0
+Child count : 1
+Child 0 : bone143
+===========================
+103 : bone143
+Parent : bone142
+Mesh count : 0
+Child count : 0
+===========================
+104 : bone134
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone135
+===========================
+105 : bone135
+Parent : bone134
+Mesh count : 0
+Child count : 0
+===========================
+106 : bone132
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone133
+===========================
+107 : bone133
+Parent : bone132
+Mesh count : 0
+Child count : 0
+===========================
+108 : bone130
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone131
+===========================
+109 : bone131
+Parent : bone130
+Mesh count : 0
+Child count : 0
+===========================
+110 : bone128
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone129
+===========================
+111 : bone129
+Parent : bone128
+Mesh count : 0
+Child count : 0
+===========================
+112 : bone126
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone127
+===========================
+113 : bone127
+Parent : bone126
+Mesh count : 0
+Child count : 0
+===========================
+114 : bone121
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone122
+===========================
+115 : bone122
+Parent : bone121
+Mesh count : 0
+Child count : 1
+Child 0 : bone123
+===========================
+116 : bone123
+Parent : bone122
+Mesh count : 0
+Child count : 1
+Child 0 : bone124
+===========================
+117 : bone124
+Parent : bone123
+Mesh count : 0
+Child count : 1
+Child 0 : bone125
+===========================
+118 : bone125
+Parent : bone124
+Mesh count : 0
+Child count : 0
+===========================
+119 : bone116
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone117
+===========================
+120 : bone117
+Parent : bone116
+Mesh count : 0
+Child count : 1
+Child 0 : bone118
+===========================
+121 : bone118
+Parent : bone117
+Mesh count : 0
+Child count : 1
+Child 0 : bone119
+===========================
+122 : bone119
+Parent : bone118
+Mesh count : 0
+Child count : 1
+Child 0 : bone120
+===========================
+123 : bone120
+Parent : bone119
+Mesh count : 0
+Child count : 0
+===========================
+124 : bone074
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone075
+===========================
+125 : bone075
+Parent : bone074
+Mesh count : 0
+Child count : 1
+Child 0 : bone076
+===========================
+126 : bone076
+Parent : bone075
+Mesh count : 0
+Child count : 1
+Child 0 : bone077
+===========================
+127 : bone077
+Parent : bone076
+Mesh count : 0
+Child count : 1
+Child 0 : bone078
+===========================
+128 : bone078
+Parent : bone077
+Mesh count : 0
+Child count : 2
+Child 0 : bone079
+Child 1 : bone109
+===========================
+129 : bone109
+Parent : bone078
+Mesh count : 0
+Child count : 1
+Child 0 : bone110
+===========================
+130 : bone110
+Parent : bone109
+Mesh count : 0
+Child count : 1
+Child 0 : bone111
+===========================
+131 : bone111
+Parent : bone110
+Mesh count : 0
+Child count : 2
+Child 0 : bone112
+Child 1 : bone114
+===========================
+132 : bone114
+Parent : bone111
+Mesh count : 0
+Child count : 1
+Child 0 : bone115
+===========================
+133 : bone115
+Parent : bone114
+Mesh count : 0
+Child count : 0
+===========================
+134 : bone112
+Parent : bone111
+Mesh count : 0
+Child count : 1
+Child 0 : bone113
+===========================
+135 : bone113
+Parent : bone112
+Mesh count : 0
+Child count : 0
+===========================
+136 : bone079
+Parent : bone078
+Mesh count : 0
+Child count : 1
+Child 0 : bone080
+===========================
+137 : bone080
+Parent : bone079
+Mesh count : 0
+Child count : 1
+Child 0 : bone081
+===========================
+138 : bone081
+Parent : bone080
+Mesh count : 0
+Child count : 1
+Child 0 : bone082
+===========================
+139 : bone082
+Parent : bone081
+Mesh count : 0
+Child count : 1
+Child 0 : bone083
+===========================
+140 : bone083
+Parent : bone082
+Mesh count : 0
+Child count : 1
+Child 0 : bone084
+===========================
+141 : bone084
+Parent : bone083
+Mesh count : 0
+Child count : 1
+Child 0 : bone085
+===========================
+142 : bone085
+Parent : bone084
+Mesh count : 0
+Child count : 1
+Child 0 : bone086
+===========================
+143 : bone086
+Parent : bone085
+Mesh count : 0
+Child count : 5
+Child 0 : bone087
+Child 1 : bone093
+Child 2 : bone097
+Child 3 : bone101
+Child 4 : bone105
+===========================
+144 : bone105
+Parent : bone086
+Mesh count : 0
+Child count : 1
+Child 0 : bone106
+===========================
+145 : bone106
+Parent : bone105
+Mesh count : 0
+Child count : 1
+Child 0 : bone107
+===========================
+146 : bone107
+Parent : bone106
+Mesh count : 0
+Child count : 1
+Child 0 : bone108
+===========================
+147 : bone108
+Parent : bone107
+Mesh count : 0
+Child count : 0
+===========================
+148 : bone101
+Parent : bone086
+Mesh count : 0
+Child count : 1
+Child 0 : bone102
+===========================
+149 : bone102
+Parent : bone101
+Mesh count : 0
+Child count : 1
+Child 0 : bone103
+===========================
+150 : bone103
+Parent : bone102
+Mesh count : 0
+Child count : 1
+Child 0 : bone104
+===========================
+151 : bone104
+Parent : bone103
+Mesh count : 0
+Child count : 0
+===========================
+152 : bone097
+Parent : bone086
+Mesh count : 0
+Child count : 1
+Child 0 : bone098
+===========================
+153 : bone098
+Parent : bone097
+Mesh count : 0
+Child count : 1
+Child 0 : bone099
+===========================
+154 : bone099
+Parent : bone098
+Mesh count : 0
+Child count : 1
+Child 0 : bone100
+===========================
+155 : bone100
+Parent : bone099
+Mesh count : 0
+Child count : 0
+===========================
+156 : bone093
+Parent : bone086
+Mesh count : 0
+Child count : 1
+Child 0 : bone094
+===========================
+157 : bone094
+Parent : bone093
+Mesh count : 0
+Child count : 1
+Child 0 : bone095
+===========================
+158 : bone095
+Parent : bone094
+Mesh count : 0
+Child count : 1
+Child 0 : bone096
+===========================
+159 : bone096
+Parent : bone095
+Mesh count : 0
+Child count : 0
+===========================
+160 : bone087
+Parent : bone086
+Mesh count : 0
+Child count : 1
+Child 0 : bone088
+===========================
+161 : bone088
+Parent : bone087
+Mesh count : 0
+Child count : 1
+Child 0 : bone089
+===========================
+162 : bone089
+Parent : bone088
+Mesh count : 0
+Child count : 1
+Child 0 : bone090
+===========================
+163 : bone090
+Parent : bone089
+Mesh count : 0
+Child count : 1
+Child 0 : bone091
+===========================
+164 : bone091
+Parent : bone090
+Mesh count : 0
+Child count : 1
+Child 0 : bone092
+===========================
+165 : bone092
+Parent : bone091
+Mesh count : 0
+Child count : 0
+===========================
+166 : bone071
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone072
+===========================
+167 : bone072
+Parent : bone071
+Mesh count : 0
+Child count : 1
+Child 0 : bone073
+===========================
+168 : bone073
+Parent : bone072
+Mesh count : 0
+Child count : 0
+===========================
+169 : bone069
+Parent : bone068
+Mesh count : 0
+Child count : 1
+Child 0 : bone070
+===========================
+170 : bone070
+Parent : bone069
+Mesh count : 0
+Child count : 0
+===========================
+171 : bone001
+Parent : bone000
+Mesh count : 0
+Child count : 1
+Child 0 : bone002
+===========================
+172 : bone002
+Parent : bone001
+Mesh count : 0
+Child count : 1
+Child 0 : bone003
+===========================
+173 : bone003
+Parent : bone002
+Mesh count : 0
+Child count : 7
+Child 0 : bone004
+Child 1 : bone006
+Child 2 : bone008
+Child 3 : bone010
+Child 4 : bone035
+Child 5 : bone037
+Child 6 : bone039
+===========================
+174 : bone039
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone040
+===========================
+175 : bone040
+Parent : bone039
+Mesh count : 0
+Child count : 2
+Child 0 : bone041
+Child 1 : bone052
+===========================
+176 : bone052
+Parent : bone040
+Mesh count : 0
+Child count : 1
+Child 0 : bone053
+===========================
+177 : bone053
+Parent : bone052
+Mesh count : 0
+Child count : 1
+Child 0 : bone054
+===========================
+178 : bone054
+Parent : bone053
+Mesh count : 0
+Child count : 3
+Child 0 : bone055
+Child 1 : bone057
+Child 2 : bone062
+===========================
+179 : bone062
+Parent : bone054
+Mesh count : 0
+Child count : 1
+Child 0 : bone063
+===========================
+180 : bone063
+Parent : bone062
+Mesh count : 0
+Child count : 0
+===========================
+181 : bone057
+Parent : bone054
+Mesh count : 0
+Child count : 1
+Child 0 : bone058
+===========================
+182 : bone058
+Parent : bone057
+Mesh count : 0
+Child count : 1
+Child 0 : bone059
+===========================
+183 : bone059
+Parent : bone058
+Mesh count : 0
+Child count : 1
+Child 0 : bone060
+===========================
+184 : bone060
+Parent : bone059
+Mesh count : 0
+Child count : 1
+Child 0 : bone061
+===========================
+185 : bone061
+Parent : bone060
+Mesh count : 0
+Child count : 0
+===========================
+186 : bone055
+Parent : bone054
+Mesh count : 0
+Child count : 1
+Child 0 : bone056
+===========================
+187 : bone056
+Parent : bone055
+Mesh count : 0
+Child count : 0
+===========================
+188 : bone041
+Parent : bone040
+Mesh count : 0
+Child count : 3
+Child 0 : bone042
+Child 1 : bone048
+Child 2 : bone050
+===========================
+189 : bone050
+Parent : bone041
+Mesh count : 0
+Child count : 1
+Child 0 : bone051
+===========================
+190 : bone051
+Parent : bone050
+Mesh count : 0
+Child count : 0
+===========================
+191 : bone048
+Parent : bone041
+Mesh count : 0
+Child count : 1
+Child 0 : bone049
+===========================
+192 : bone049
+Parent : bone048
+Mesh count : 0
+Child count : 0
+===========================
+193 : bone042
+Parent : bone041
+Mesh count : 0
+Child count : 1
+Child 0 : bone043
+===========================
+194 : bone043
+Parent : bone042
+Mesh count : 0
+Child count : 1
+Child 0 : bone044
+===========================
+195 : bone044
+Parent : bone043
+Mesh count : 0
+Child count : 1
+Child 0 : bone045
+===========================
+196 : bone045
+Parent : bone044
+Mesh count : 0
+Child count : 1
+Child 0 : bone046
+===========================
+197 : bone046
+Parent : bone045
+Mesh count : 0
+Child count : 1
+Child 0 : bone047
+===========================
+198 : bone047
+Parent : bone046
+Mesh count : 0
+Child count : 0
+===========================
+199 : bone037
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone038
+===========================
+200 : bone038
+Parent : bone037
+Mesh count : 0
+Child count : 0
+===========================
+201 : bone035
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone036
+===========================
+202 : bone036
+Parent : bone035
+Mesh count : 0
+Child count : 0
+===========================
+203 : bone010
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone011
+===========================
+204 : bone011
+Parent : bone010
+Mesh count : 0
+Child count : 2
+Child 0 : bone012
+Child 1 : bone023
+===========================
+205 : bone023
+Parent : bone011
+Mesh count : 0
+Child count : 1
+Child 0 : bone024
+===========================
+206 : bone024
+Parent : bone023
+Mesh count : 0
+Child count : 1
+Child 0 : bone025
+===========================
+207 : bone025
+Parent : bone024
+Mesh count : 0
+Child count : 3
+Child 0 : bone026
+Child 1 : bone028
+Child 2 : bone033
+===========================
+208 : bone033
+Parent : bone025
+Mesh count : 0
+Child count : 1
+Child 0 : bone034
+===========================
+209 : bone034
+Parent : bone033
+Mesh count : 0
+Child count : 0
+===========================
+210 : bone028
+Parent : bone025
+Mesh count : 0
+Child count : 1
+Child 0 : bone029
+===========================
+211 : bone029
+Parent : bone028
+Mesh count : 0
+Child count : 1
+Child 0 : bone030
+===========================
+212 : bone030
+Parent : bone029
+Mesh count : 0
+Child count : 1
+Child 0 : bone031
+===========================
+213 : bone031
+Parent : bone030
+Mesh count : 0
+Child count : 1
+Child 0 : bone032
+===========================
+214 : bone032
+Parent : bone031
+Mesh count : 0
+Child count : 0
+===========================
+215 : bone026
+Parent : bone025
+Mesh count : 0
+Child count : 1
+Child 0 : bone027
+===========================
+216 : bone027
+Parent : bone026
+Mesh count : 0
+Child count : 0
+===========================
+217 : bone012
+Parent : bone011
+Mesh count : 0
+Child count : 3
+Child 0 : bone013
+Child 1 : bone019
+Child 2 : bone021
+===========================
+218 : bone021
+Parent : bone012
+Mesh count : 0
+Child count : 1
+Child 0 : bone022
+===========================
+219 : bone022
+Parent : bone021
+Mesh count : 0
+Child count : 0
+===========================
+220 : bone019
+Parent : bone012
+Mesh count : 0
+Child count : 1
+Child 0 : bone020
+===========================
+221 : bone020
+Parent : bone019
+Mesh count : 0
+Child count : 0
+===========================
+222 : bone013
+Parent : bone012
+Mesh count : 0
+Child count : 1
+Child 0 : bone014
+===========================
+223 : bone014
+Parent : bone013
+Mesh count : 0
+Child count : 1
+Child 0 : bone015
+===========================
+224 : bone015
+Parent : bone014
+Mesh count : 0
+Child count : 1
+Child 0 : bone016
+===========================
+225 : bone016
+Parent : bone015
+Mesh count : 0
+Child count : 1
+Child 0 : bone017
+===========================
+226 : bone017
+Parent : bone016
+Mesh count : 0
+Child count : 1
+Child 0 : bone018
+===========================
+227 : bone018
+Parent : bone017
+Mesh count : 0
+Child count : 0
+===========================
+228 : bone008
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone009
+===========================
+229 : bone009
+Parent : bone008
+Mesh count : 0
+Child count : 0
+===========================
+230 : bone006
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone007
+===========================
+231 : bone007
+Parent : bone006
+Mesh count : 0
+Child count : 0
+===========================
+232 : bone004
+Parent : bone003
+Mesh count : 0
+Child count : 1
+Child 0 : bone005
+===========================
+233 : bone005
+Parent : bone004
+Mesh count : 0
+Child count : 0
