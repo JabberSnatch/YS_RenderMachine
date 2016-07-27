@@ -16,10 +16,19 @@
 #include "assimp-3.0/include/assimp/mesh.h"
 #include "assimp-3.0/include/assimp/types.h"
 
+#include "vec4.hpp"
+#include "mat4.hpp"
+#include "Node.hpp"
+#include "Scene.hpp"
+
+
 // TODO:
 // [ ] Model loading
-// [ ] Basic scene display
+	// [X] Basic data structures (vec4, mat4, Node, Scene)
+	// [ ] Rendering data structures (Mesh, Bone)
+	// [ ] Assimp -> ys_RenderMachine conversion
 // [ ] Shader loading (consider SPIR-V, subroutines)
+// [ ] Basic scene display
 
 // [ ] Proper alpha blending
 // [ ] Shadow maps
@@ -145,6 +154,65 @@ WinMain(HINSTANCE	_hInstance,
 	}
 
 	// TEST AREA
+	ys_render_machine::vec4 test_vec;
+	test_vec.x = 1.0f;
+	test_vec.y = 2.0f;
+	test_vec.z = 3.0f;
+	test_vec.w = 1.0f;
+
+	ys_render_machine::mat4 test_mat;
+	test_mat.col[0] = ys_render_machine::vec4();
+
+	ys_render_machine::Node 
+		node_A("node_A"), 
+		node_B("node_B"),
+		node_C("node_C"), 
+		node_D("node_D");
+
+	// node_A
+	//	| node_B
+	//	| node_C
+	//		| node_D
+	node_B.SetParent(&node_A);
+	node_C.AddChild(&node_D);
+	node_B.AddChild(&node_C);
+	node_A.AddChild(&node_C);
+	
+	// node_A
+	//	| node_B
+	//		| node_D
+	//	| node_C
+	node_D.SetParent(nullptr);
+	node_B.AddChild(&node_D);
+
+	// node_A
+	//	| node_C
+	// node_D => Also child of B
+	//	| node_B => Also parent of D
+	node_B.SetParent(&node_D);
+	// We can get back to a proper tree simply with the following line :
+	node_D.SetParent(nullptr);
+
+
+	ys_render_machine::Scene*	test_scene = new ys_render_machine::Scene();
+	delete test_scene;
+
+	test_scene = new ys_render_machine::Scene();
+	ys_render_machine::Node*	test_root = test_scene->root();
+	for (int i = 0; i < 10; ++i)
+	{
+		ys_render_machine::Node* node = 
+			new ys_render_machine::Node(std::to_string(i));
+		test_root->AddChild(node);
+		for (int j = 0; j < 10; ++j)
+		{
+			node->AddChild(new ys_render_machine::Node(std::to_string(j)));
+		}
+	}
+
+	delete test_scene;
+
+
 #ifdef YS_LOG_TO_FILE
 	log_file.open("output.yslog", std::ios_base::out);
 	log_file.clear();
