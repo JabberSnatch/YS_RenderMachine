@@ -146,7 +146,7 @@ WinMain(HINSTANCE	_hInstance,
 
 	// TEST AREA
 #ifdef YS_LOG_TO_FILE
-	log_file.open("output", std::ios_base::out);
+	log_file.open("output.yslog", std::ios_base::out);
 	log_file.clear();
 #endif
 
