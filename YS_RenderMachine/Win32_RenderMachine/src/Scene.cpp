@@ -47,6 +47,18 @@ Scene::~Scene()
 	{
 		delete *ite;
 	}
+
+	for (std::vector<Shader*>::iterator ite = m_shaders.begin();
+		 ite != m_shaders.end(); ++ite)
+	{
+		delete *ite;
+	}
+
+	for (std::vector<ShaderStage*>::iterator ite = m_shader_stages.begin();
+		 ite != m_shader_stages.end(); ++ite)
+	{
+		delete *ite;
+	}
 }
 
 

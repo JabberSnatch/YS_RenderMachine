@@ -17,16 +17,13 @@ namespace ys_render_machine {
 void
 MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 {
-	Logger::log_file = "";
-	LOG("Loading Nodes..");
-	Logger::log_file = "mesh_factory.yslog";
-	Logger::ClearLogFile();
+	Logger::Log("Loading Nodes..", Logger::kChannelStdOut);
 
 	Assimp::Importer	main_importer;
 
 	const aiScene*		assimp_scene = main_importer.ReadFile(_file, 0);
 	if (!assimp_scene)
-		LOG(main_importer.GetErrorString());
+		Logger::Log(main_importer.GetErrorString(), Logger::kChannelMeshFactory);
 
 	Node*					scene_root = _scene.root();
 	std::vector<Mesh*>&		ys_meshes = _scene.meshes();
@@ -36,10 +33,12 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 	// Then, when going through the Assimp scene hierarchy, we will be able to 
 	// get the mat4* corresponding to our bones.
 	
-	LOG("Mesh count : " + std::to_string(assimp_scene->mNumMeshes));
+	Logger::Log("Mesh count : " + std::to_string(assimp_scene->mNumMeshes),
+				Logger::kChannelMeshFactory);
 	for (unsigned int i = 0; i < assimp_scene->mNumMeshes; ++i)
 	{
-		LOG("============================");
+		Logger::Log("============================", 
+					Logger::kChannelMeshFactory);
 
 		// For each mesh provided by Assimp we produce the matching internal structure.
 		aiMesh*		assimp_mesh = assimp_scene->mMeshes[i];
@@ -48,14 +47,16 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		// We add any bone data the current mesh might reference.
 		// Structure hierarchy : 
 		// Mesh 1->* Bone 1->* Weight
-		LOG("BONES");
+		Logger::Log("BONES", Logger::kChannelMeshFactory);
 		for (unsigned int bone_index = 0;
 			 bone_index < assimp_mesh->mNumBones; ++bone_index)
 		{
 			aiBone*		assimp_bone = assimp_mesh->mBones[bone_index];
 			Mesh::Bone	ys_bone;
 
-			LOG("Bone : " + std::to_string(bone_index) + " " + assimp_bone->mName.C_Str());
+			Logger::Log("Bone : " + std::to_string(bone_index) + " " + 
+						assimp_bone->mName.C_Str(), 
+						Logger::kChannelMeshFactory);
 			
 			for (unsigned int weight_index = 0;
 				 weight_index < assimp_bone->mNumWeights; ++weight_index)
@@ -66,16 +67,17 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 				ys_bone.weight_map.emplace(assimp_weight.mVertexId,
 										   assimp_weight.mWeight);
 				
-				LOG(std::to_string(assimp_weight.mWeight) + " ; " + 
-					std::to_string(assimp_weight.mVertexId));
+				Logger::Log(std::to_string(assimp_weight.mWeight) + " ; " +
+							std::to_string(assimp_weight.mVertexId), 
+							Logger::kChannelMeshFactory);
 			}
 
 			ys_mesh->bones.emplace(assimp_bone->mName.C_Str(), ys_bone);
-			LOG("");
+			Logger::Log("", Logger::kChannelMeshFactory);
 		}
 
 		// Once the bones were added, we also add our vertices.
-		LOG("VERTICES");
+		Logger::Log("VERTICES", Logger::kChannelMeshFactory);
 		for (unsigned int vertex_index = 0;
 			 vertex_index < assimp_mesh->mNumVertices; ++vertex_index)
 		{
@@ -86,10 +88,11 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 
 			ys_mesh->vertices.push_back(ys_vertex);
 
-			LOG(std::to_string(vertex_index) + " " + 
-				std::to_string(ys_vertex.x) + " " + 
-				std::to_string(ys_vertex.y) + " " + 
-				std::to_string(ys_vertex.z));
+			Logger::Log(std::to_string(vertex_index) + " " +
+						std::to_string(ys_vertex.x) + " " + 
+						std::to_string(ys_vertex.y) + " " + 
+						std::to_string(ys_vertex.z), 
+						Logger::kChannelMeshFactory);
 		}
 
 		ys_meshes.push_back(ys_mesh);
@@ -156,8 +159,6 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 			ys_stack.push_back(child_node);
 		}
 	}
-
-	Logger::log_file = Logger::default_log_file;
 }
 
 

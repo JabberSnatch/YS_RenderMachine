@@ -10,7 +10,7 @@ namespace ys_render_machine {
 
 class MeshFactory
 {
-public:
+public:	
 	// The purpose of this function is two-fold : 
 	// - Create the Mesh structure ready to be eaten by the rendering pipeline.
 	// - Create the corresponding Nodes into the Scene.

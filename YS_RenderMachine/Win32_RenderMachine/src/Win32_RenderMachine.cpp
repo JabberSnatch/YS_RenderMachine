@@ -22,6 +22,7 @@
 #include "Scene.hpp"
 #include "Logger.hpp"
 #include "MeshFactory.hpp"
+#include "Shader.hpp"
 
 
 // TODO:
@@ -151,6 +152,12 @@ WinMain(HINSTANCE	_hInstance,
 	}
 
 	// TEST AREA
+	ys_render_machine::Logger::ClearAll();
+
+
+	ys_render_machine::ShaderStage test_shader_stage(GL_VERTEX_SHADER);
+	test_shader_stage.CompileFile("resource/SHADER/default.vert");
+
 	ys_render_machine::vec4 test_vec;
 	test_vec.x = 1.0f;
 	test_vec.y = 2.0f;
@@ -209,7 +216,6 @@ WinMain(HINSTANCE	_hInstance,
 
 	delete test_scene;
 
-	ys_render_machine::Logger::ClearLogFile();
 
 
 	//std::string			path = "resource/Sora/Anti Sora.dae";
@@ -219,9 +225,6 @@ WinMain(HINSTANCE	_hInstance,
 
 	// ASSIMP TESTS
 	Assimp::Importer	main_importer;
-	aiString			extensions;
-	main_importer.GetExtensionList(extensions);
-	std::cout << "Available extensions : " << extensions.C_Str() << std::endl;
 
 	assert(std::fstream(path).good());
 
@@ -377,8 +380,6 @@ WinMain(HINSTANCE	_hInstance,
 		++accum;
 	}
 
-	int i;
-	std::cin >> i;
 	return 0;
 }
 

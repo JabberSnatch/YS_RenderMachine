@@ -7,33 +7,73 @@
 namespace ys_render_machine {
 
 
-const std::string Logger::default_log_file = "output.yslog";
-std::string	Logger::log_file = Logger::default_log_file;
+Logger::LogChannel	Logger::current_channel = Logger::kChannelDefault;
+
+std::string			Logger::custom_log_file = "output.yslog";
+
+const std::string	Logger::available_log_files[] = {
+	"output.yslog",
+	"renderer.yslog",
+	"mesh_factory.yslog"
+};
+
 
 void
-Logger::LogMessage(const std::string& msg)
+Logger::Log(const std::string& _msg, LogChannel _channel)
 {
-	if (log_file != "")
+	if (_channel != kChannelCount)
 	{
-		std::fstream output_stream(log_file, std::ios_base::out | std::ios_base::app);
-		output_stream << msg << std::endl;
+		std::fstream output_stream;
+		if (_channel != kChannelCustom)
+		{
+			output_stream.open(available_log_files[_channel],
+							   std::ios_base::out | std::ios_base::app);
+		}
+		else
+		{
+			output_stream.open(custom_log_file,
+							   std::ios_base::out | std::ios_base::app);
+		}
+
+		output_stream << _msg << std::endl;
 		output_stream.close();
 	}
-	else
+	else if (_channel == kChannelStdOut)
 	{
-		std::cout << msg << std::endl;
+		std::cout << _msg << std::endl;
 	}
 }
 
 
 void
-Logger::ClearLogFile()
+Logger::ClearLogFile(LogChannel _channel)
 {
-	if (log_file != "")
+	if (_channel != kChannelCount && _channel != kChannelStdOut)
 	{
-		std::fstream log_file_stream(log_file, std::ios_base::out);
-		log_file_stream.clear();
-		log_file_stream.close();
+		std::fstream output_stream;
+		if (_channel != kChannelCustom)
+		{
+			output_stream.open(available_log_files[_channel],
+							   std::ios_base::out);
+		}
+		else
+		{
+			output_stream.open(custom_log_file,
+							   std::ios_base::out);
+		}
+
+		output_stream.clear();
+		output_stream.close();
+	}
+}
+
+
+void
+Logger::ClearAll()
+{
+	for (unsigned int i = 0; i < kChannelCount; ++i)
+	{
+		ClearLogFile(LogChannel(i));
 	}
 }
 
