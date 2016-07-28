@@ -136,7 +136,7 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 			if (bone_ite != (*ite)->bones.end())
 			{
 				// Our bone structures stores a pointer to a matrix.
-				bone_ite->second.transform = &ys_node->transform();
+				bone_ite->second.node = ys_node;
 			}
 		}
 
@@ -144,13 +144,13 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		// transform
 		for (unsigned int i = 0; i < assimp_node->mNumMeshes; ++i)
 		{
-			ys_meshes[assimp_node->mMeshes[i]]->transform =
-				&ys_node->transform();
+			ys_meshes[assimp_node->mMeshes[i]]->node =
+				ys_node;
 		}
 
 		// Once we have correctly fetched the current node data, we can add its
 		// children to our stack so that they can be processed later on.
-		for (int i = 0; i < assimp_node->mNumChildren; ++i)
+		for (unsigned int i = 0; i < assimp_node->mNumChildren; ++i)
 		{
 			assimp_stack.push_back(assimp_node->mChildren[i]);
 			

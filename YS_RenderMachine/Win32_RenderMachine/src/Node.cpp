@@ -53,5 +53,12 @@ Node::remove_child(unsigned int index)
 }
 
 
+mat4
+Node::WorldTransform()
+{
+	return mat4();
+}
+
+
 }
 

@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 #include <string>
-#include "mat4.hpp"
+#include "Node.hpp"
 
 
 namespace ys_render_machine {
@@ -19,12 +19,13 @@ struct Mesh
 	// it affects.
 	struct Bone
 	{
-		mat4*								transform;
+		Node*								node;
 		std::unordered_map<uint64_t, float>	weight_map;
 	};
 
-	mat4*				transform;
-	std::vector<vec4>	vertices;
+	Node*					node;
+	std::vector<vec4>		vertices;
+	std::vector<uint32_t>	indices;
 	std::unordered_map<std::string, Bone>	bones;
 
 };

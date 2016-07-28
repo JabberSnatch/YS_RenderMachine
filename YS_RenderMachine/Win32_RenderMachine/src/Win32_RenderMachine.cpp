@@ -155,6 +155,10 @@ WinMain(HINSTANCE	_hInstance,
 	// TEST AREA
 	ys_render_machine::Logger::ClearAll();
 
+	ys_render_machine::mat4		mat_A, mat_B, mat_C;
+	mat_A.col[3].x = 3.0f;
+	mat_B.col[3].y = 4.0f;
+	mat_C = mat_A * mat_B;
 
 	ys_render_machine::ShaderStage test_shader_stage(GL_VERTEX_SHADER);
 	test_shader_stage.CompileFile("resource/SHADER/default.vert");

@@ -7,19 +7,25 @@
 namespace ys_render_machine {
 
 
+// TODO: Possible improvements
+// - Profiling on matrix product.
+
 // Lightweight 4x4 matrix.
 // Default value is identity.
 // By the way this is column major.
 struct mat4
 {
-	mat4() 
-	{
-		memset(data, 0, sizeof(float) * 16);
-		col[0].x = 1.0f;
-		col[1].y = 1.0f;
-		col[2].z = 1.0f;
-		col[3].w = 1.0f;
-	}
+	mat4();
+	mat4(const mat4& _other) = default;
+	mat4(mat4&& _other) = default;
+	~mat4() = default;
+
+	void	Transpose();
+
+	mat4&	operator = (const mat4& _other) = default;
+	mat4&	operator = (mat4&& _other) = default;
+
+	mat4	operator * (const mat4& _other);
 
 	union
 	{
@@ -30,6 +36,5 @@ struct mat4
 
 
 }
-
 
 #endif // __YS_MAT4_HPP__

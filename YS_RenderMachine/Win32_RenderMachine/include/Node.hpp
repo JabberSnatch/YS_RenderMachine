@@ -37,6 +37,10 @@ public:
 	// _child m_index_index_in_parent and m_parent.
 	void				AddChild(Node* _child);
 
+	// WorldTransform runs through the Node's hierarchy and computes the transform
+	// of the Node relative to the identity transform.
+	mat4				WorldTransform();
+
 	bool				HasParent() const { return m_parent != nullptr; }
 	bool				HasChildren() const { return !m_children.empty(); }
 	// NOTE: Add a function to check for cycles.
