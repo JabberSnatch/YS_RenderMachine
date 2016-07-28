@@ -31,8 +31,9 @@
 	// [X] Rendering data structures (Mesh, Bone)
 	// [X] Assimp -> ys_RenderMachine conversion
 // [ ] Basic scene display
-	// [ ] Shader loading (consider SPIR-V, subroutines)
-	// [ ] Uniform Blocks
+	// [X] Shader loading (consider SPIR-V, subroutines)
+	// [P] Uniform Blocks
+	// [ ] VBO, IBO, VAO
 	// [ ] Skinned Mesh -> Static Mesh conversion
 	// [ ] Rendering pipeline
 
@@ -157,6 +158,13 @@ WinMain(HINSTANCE	_hInstance,
 
 	ys_render_machine::ShaderStage test_shader_stage(GL_VERTEX_SHADER);
 	test_shader_stage.CompileFile("resource/SHADER/default.vert");
+
+	ys_render_machine::Shader test_shader;
+	test_shader.Link();
+	test_shader.AddShaderStage(&test_shader_stage);
+	test_shader.Link();
+	test_shader.Enable();
+	test_shader.Disable();
 
 	ys_render_machine::vec4 test_vec;
 	test_vec.x = 1.0f;

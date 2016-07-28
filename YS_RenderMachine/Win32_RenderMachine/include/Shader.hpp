@@ -20,6 +20,7 @@ public:
 	void	CompileSource(const std::string& _source);
 
 	GLuint	gl_name() const { return m_gl_name; }
+	GLuint	gl_shader_stage() const { return m_gl_shader_stage; }
 
 private:
 	GLuint			m_gl_name = 0;
@@ -32,14 +33,16 @@ private:
 class Shader
 {
 public:
+	// Maps each ShaderStage to an OpenGL pipeline stage (vertex, fragment, ..)
 	using t_ShaderStageMap = std::unordered_map<GLuint, const ShaderStage*>;
 
-	Shader() = default;
+	Shader();
 	~Shader();
 
-	void	AddShaderStage(GLuint _gl_pipeline_stage, 
-						   const ShaderStage* _stage);
-	void	Link();
+	void		AddShaderStage(const ShaderStage* _stage);
+	void		Link();
+	void		Enable();
+	static void	Disable();
 
 private:
 	GLuint				m_gl_name = 0;
