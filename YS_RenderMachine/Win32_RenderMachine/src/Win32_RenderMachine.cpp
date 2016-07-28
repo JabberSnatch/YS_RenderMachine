@@ -25,12 +25,15 @@
 
 
 // TODO:
-// [?] Model loading
+// [X] Model loading
 	// [X] Basic data structures (vec4, mat4, Node, Scene)
 	// [X] Rendering data structures (Mesh, Bone)
-	// [?] Assimp -> ys_RenderMachine conversion
-// [ ] Shader loading (consider SPIR-V, subroutines)
+	// [X] Assimp -> ys_RenderMachine conversion
 // [ ] Basic scene display
+	// [ ] Shader loading (consider SPIR-V, subroutines)
+	// [ ] Uniform Blocks
+	// [ ] Skinned Mesh -> Static Mesh conversion
+	// [ ] Rendering pipeline
 
 // [ ] Proper alpha blending
 // [ ] Shadow maps
@@ -374,10 +377,6 @@ WinMain(HINSTANCE	_hInstance,
 		++accum;
 	}
 
-#ifdef YS_LOG_TO_FILE
-	log_file.close();
-#endif
-	
 	int i;
 	std::cin >> i;
 	return 0;

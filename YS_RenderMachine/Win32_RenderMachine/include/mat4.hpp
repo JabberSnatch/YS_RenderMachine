@@ -9,6 +9,7 @@ namespace ys_render_machine {
 
 // Lightweight 4x4 matrix.
 // Default value is identity.
+// By the way this is column major.
 struct mat4
 {
 	mat4() 
