@@ -193,6 +193,7 @@ if %errorlevel% leq 1 exit 0 else exit %errorlevel%
     <ClCompile Include="src\mat4.cpp" />
     <ClCompile Include="src\MeshFactory.cpp" />
     <ClCompile Include="src\Node.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\vec4.cpp" />

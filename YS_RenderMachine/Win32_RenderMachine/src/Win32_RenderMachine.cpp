@@ -23,6 +23,7 @@
 #include "Logger.hpp"
 #include "MeshFactory.hpp"
 #include "Shader.hpp"
+#include "Renderer.hpp"
 
 
 // TODO:
@@ -234,6 +235,27 @@ WinMain(HINSTANCE	_hInstance,
 	std::string			path = "resource/SquallFFVIII/Squall.dae";
 	ys_render_machine::Scene loading_scene;
 	ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
+
+	ys_render_machine::ShaderStage	default_vertex(GL_VERTEX_SHADER);
+	default_vertex.CompileFile("");
+	ys_render_machine::ShaderStage	default_fragment(GL_FRAGMENT_SHADER);
+	default_fragment.CompileFile("");
+	ys_render_machine::Shader		default_shader;
+	default_shader.AddShaderStage(&default_vertex);
+	default_shader.AddShaderStage(&default_fragment);
+	default_shader.Link();
+
+	ys_render_machine::Renderer::RenderData		render_data;
+	render_data.viewport.x = 0;
+	render_data.viewport.y = 0;
+	render_data.viewport.width = win_width;
+	render_data.viewport.height = win_height;
+
+	render_data.shader = &default_shader;
+
+	ys_render_machine::Renderer::PrepareRenderData(loading_scene, render_data);
+	ys_render_machine::Renderer::Render(render_data);
+
 
 	// ASSIMP TESTS
 	Assimp::Importer	main_importer;

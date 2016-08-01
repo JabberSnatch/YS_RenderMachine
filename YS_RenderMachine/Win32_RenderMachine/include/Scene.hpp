@@ -4,6 +4,7 @@
 #include "Node.hpp"
 #include "Mesh.hpp"
 #include "Shader.hpp"
+#include "VertexArray.hpp"
 
 
 namespace ys_render_machine {
@@ -18,12 +19,14 @@ public:
 	Scene();
 	~Scene();
 
-	Node*				root() const { return m_root; }
-	std::vector<Mesh*>&	meshes() { return m_meshes; }
+	Node*						root() const { return m_root; }
+	std::vector<Mesh*>&			meshes() { return m_meshes; }
+	std::vector<VertexArray*>&	vertex_arrays() { return m_vertex_arrays; }
 
 private:
 	Node*						m_root;
 	std::vector<Mesh*>			m_meshes;
+	std::vector<VertexArray*>	m_vertex_arrays;
 	std::vector<Shader*>		m_shaders;
 	std::vector<ShaderStage*>	m_shader_stages;
 

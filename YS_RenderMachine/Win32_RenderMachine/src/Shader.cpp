@@ -134,4 +134,14 @@ Shader::Disable()
 }
 
 
+GLuint
+Shader::UniformLocation(const std::string& _name)
+{
+	if (m_linked)
+		return glGetUniformLocation(m_gl_name, _name.c_str());
+	else
+		return 0;
+}
+
+
 }

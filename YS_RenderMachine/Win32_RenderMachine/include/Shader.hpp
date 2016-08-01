@@ -44,6 +44,8 @@ public:
 	void		Enable();
 	static void	Disable();
 
+	GLuint		UniformLocation(const std::string& _name);
+
 private:
 	GLuint				m_gl_name = 0;
 	bool				m_linked = false;

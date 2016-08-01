@@ -7,6 +7,7 @@
 #include "assimp-3.0/include/assimp/anim.h"
 #include "assimp-3.0/include/assimp/mesh.h"
 #include "assimp-3.0/include/assimp/types.h"
+#include "assimp-3.0/include/assimp/postprocess.h"
 
 #include "Logger.hpp"
 
@@ -21,7 +22,8 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 
 	Assimp::Importer	main_importer;
 
-	const aiScene*		assimp_scene = main_importer.ReadFile(_file, 0);
+	const aiScene*		assimp_scene = 
+		main_importer.ReadFile(_file, aiProcess_Triangulate);
 	if (!assimp_scene)
 		Logger::Log(main_importer.GetErrorString(), Logger::kChannelMeshFactory);
 
@@ -95,7 +97,27 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 						Logger::kChannelMeshFactory);
 		}
 
+		Logger::Log("INDICES", Logger::kChannelMeshFactory);
+		for (unsigned int face_index = 0;
+			 face_index < assimp_mesh->mNumFaces; ++face_index)
+		{
+			std::string msg = std::to_string(face_index) + " ";
+			aiFace		assimp_face = assimp_mesh->mFaces[face_index];
+			
+			for (unsigned int i = 0; i < assimp_face.mNumIndices; ++i)
+			{
+				msg += std::to_string(assimp_face.mIndices[i]) + " ";
+				ys_mesh->indices.push_back(assimp_face.mIndices[i]);
+			}
+
+			Logger::Log(msg, Logger::kChannelMeshFactory);
+		}
+
 		ys_meshes.push_back(ys_mesh);
+
+		VertexArray* vert_array = new VertexArray();
+		vert_array->BindMesh(ys_mesh);
+		_scene.vertex_arrays().push_back(vert_array);
 	}
 
 

@@ -51,6 +51,7 @@ VertexArray::UpdateBuffers()
 						 m_bound_mesh->vertices.data());
 	glNamedBufferSubData(ibo(), 0, m_index_buffer_size,
 						 m_bound_mesh->indices.data());
+	m_model = m_bound_mesh->node->WorldTransform();
 }
 
 

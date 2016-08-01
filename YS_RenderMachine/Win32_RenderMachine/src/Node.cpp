@@ -56,7 +56,16 @@ Node::remove_child(unsigned int index)
 mat4
 Node::WorldTransform()
 {
-	return mat4();
+	mat4	result;
+	Node*	cursor = this;
+
+	while (cursor->HasParent())
+	{
+		result = cursor->transform() * result;
+		cursor = cursor->parent();
+	}
+
+	return result;
 }
 
 
