@@ -22,8 +22,8 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 
 	Assimp::Importer	main_importer;
 
-	const aiScene*		assimp_scene = 
-		main_importer.ReadFile(_file, aiProcess_Triangulate);
+	const aiScene*		assimp_scene =
+		main_importer.ReadFile(_file, 0u);//aiProcess_Triangulate);
 	if (!assimp_scene)
 		Logger::Log(main_importer.GetErrorString(), Logger::kChannelMeshFactory);
 
@@ -106,6 +106,9 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 			
 			for (unsigned int i = 0; i < assimp_face.mNumIndices; ++i)
 			{
+				if (assimp_face.mNumIndices != 3)
+					Logger::Log("Non triangle face found", Logger::kChannelMeshFactory);
+
 				msg += std::to_string(assimp_face.mIndices[i]) + " ";
 				ys_mesh->indices.push_back(assimp_face.mIndices[i]);
 			}
@@ -168,6 +171,8 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		{
 			ys_meshes[assimp_node->mMeshes[i]]->node =
 				ys_node;
+
+			//ys_node->transform() = mat4::Scale(0.0001f) * ys_node->transform();
 		}
 
 		// Once we have correctly fetched the current node data, we can add its

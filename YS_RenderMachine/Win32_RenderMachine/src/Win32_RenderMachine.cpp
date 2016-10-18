@@ -106,8 +106,9 @@ WinMain(HINSTANCE	_hInstance,
 	}
 
 	// CREATE CONTEXT
+	HDC		device_context;
 	{
-		HDC		device_context = GetDC(h_wnd);
+		device_context = GetDC(h_wnd);
 
 		PIXELFORMATDESCRIPTOR pixel_format_desc = { 0 };
 		pixel_format_desc.nSize = sizeof(PIXELFORMATDESCRIPTOR);
@@ -229,17 +230,21 @@ WinMain(HINSTANCE	_hInstance,
 
 	delete test_scene;
 
-
+	// Core classes :
+	// MeshFactory
+	// Scene
+	// Renderer::RenderData
 
 	//std::string			path = "resource/Sora/Anti Sora.dae";
-	std::string			path = "resource/SquallFFVIII/Squall.dae";
+	//std::string			path = "resource/SquallFFVIII/Squall.dae";
+	std::string			path = "resource/Leon/Leon.dae";
 	ys_render_machine::Scene loading_scene;
 	ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
 
 	ys_render_machine::ShaderStage	default_vertex(GL_VERTEX_SHADER);
-	default_vertex.CompileFile("");
+	default_vertex.CompileFile("resource/SHADER/default.vert");
 	ys_render_machine::ShaderStage	default_fragment(GL_FRAGMENT_SHADER);
-	default_fragment.CompileFile("");
+	default_fragment.CompileFile("resource/SHADER/default.frag");
 	ys_render_machine::Shader		default_shader;
 	default_shader.AddShaderStage(&default_vertex);
 	default_shader.AddShaderStage(&default_fragment);
@@ -254,7 +259,12 @@ WinMain(HINSTANCE	_hInstance,
 	render_data.shader = &default_shader;
 
 	ys_render_machine::Renderer::PrepareRenderData(loading_scene, render_data);
-	ys_render_machine::Renderer::Render(render_data);
+	
+	while (true)
+	{
+		ys_render_machine::Renderer::Render(render_data);
+		::SwapBuffers(device_context);
+	}
 
 
 	// ASSIMP TESTS

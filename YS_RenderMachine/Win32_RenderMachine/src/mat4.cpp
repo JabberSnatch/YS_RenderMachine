@@ -60,6 +60,17 @@ mat4::Translation(const vec4& _vector)
 
 
 mat4
+mat4::Scale(float _factor)
+{
+	mat4	result;
+	result.col[0].x = _factor;
+	result.col[1].y = _factor;
+	result.col[2].z = _factor;
+	return result;
+}
+
+
+mat4
 mat4::Frustum(float _near, float _far, float _width, float _height)
 {
 	mat4	result;

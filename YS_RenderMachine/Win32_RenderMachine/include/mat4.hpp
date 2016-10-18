@@ -28,6 +28,7 @@ struct mat4
 	mat4	operator * (const mat4& _other);
 
 	static mat4		Translation(const vec4& _vector);
+	static mat4		Scale(float _factor);
 
 	static mat4		Frustum(float _near, float _far, float _width, float _height);
 	static mat4		Perspective(float _near, float _far, float _fov, float _ratio);

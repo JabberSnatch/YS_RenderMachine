@@ -24,7 +24,8 @@ public:
 	const mat4&	model() const { return m_model; }
 
 	size_t		vertex_buffer_size() const { return m_vertex_buffer_size; }
-	size_t		index_buffer_size() const { return m_index_buffer_size; }
+	size_t		index_buffer_size() const { return m_index_count * sizeof(uint32_t); }
+	uint32_t	index_count() const { return m_index_count; }
 
 private:
 	const Mesh*	m_bound_mesh;
@@ -32,7 +33,7 @@ private:
 	GLuint		m_gl_objects[3];
 
 	size_t		m_vertex_buffer_size;
-	size_t		m_index_buffer_size;
+	uint32_t	m_index_count;
 
 };
 
