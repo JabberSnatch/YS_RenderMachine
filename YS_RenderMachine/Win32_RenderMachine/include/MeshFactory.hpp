@@ -16,6 +16,10 @@ public:
 	// - Create the corresponding Nodes into the Scene.
 	static void LoadIntoScene(Scene& _scene, const std::string& _file);
 
+	static void DebugLoadArrays(Scene& _scene, const std::string& _name,
+								float* _vertices, int _stride, int _vcount,
+								uint32_t* _indices, int _icount);
+
 };
 
 

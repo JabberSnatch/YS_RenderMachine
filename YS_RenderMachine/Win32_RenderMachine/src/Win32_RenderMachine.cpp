@@ -24,6 +24,7 @@
 #include "MeshFactory.hpp"
 #include "Shader.hpp"
 #include "Renderer.hpp"
+#include "external/cube_data.h"
 
 
 // TODO:
@@ -74,6 +75,9 @@ WinMain(HINSTANCE	_hInstance,
 		LPSTR		_lpCmdLine,
 		int			_nCmdShow)
 {
+	int i;
+	std::cin >> i;
+
 	// NOTE: wnd_class is used to create and destroy the window.
 	WNDCLASS	wnd_class = { 0 };
 	HWND		h_wnd;
@@ -239,7 +243,10 @@ WinMain(HINSTANCE	_hInstance,
 	//std::string			path = "resource/SquallFFVIII/Squall.dae";
 	std::string			path = "resource/Leon/Leon.dae";
 	ys_render_machine::Scene loading_scene;
-	ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
+	//ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
+	ys_render_machine::MeshFactory::DebugLoadArrays(loading_scene, "Cube", 
+		ys_primitives::ys_cube_vertex, 3, 3 * 8,
+		ys_primitives::ys_cube_indices, 3 * 2 * 6);
 
 	ys_render_machine::ShaderStage	default_vertex(GL_VERTEX_SHADER);
 	default_vertex.CompileFile("resource/SHADER/default.vert");
@@ -255,6 +262,9 @@ WinMain(HINSTANCE	_hInstance,
 	render_data.viewport.y = 0;
 	render_data.viewport.width = win_width;
 	render_data.viewport.height = win_height;
+	render_data.view = 
+		ys_render_machine::ComputeDebugView(*loading_scene.meshes()[0], 
+											60.0f);
 
 	render_data.shader = &default_shader;
 
@@ -265,7 +275,6 @@ WinMain(HINSTANCE	_hInstance,
 		ys_render_machine::Renderer::Render(render_data);
 		::SwapBuffers(device_context);
 	}
-
 
 	// ASSIMP TESTS
 	Assimp::Importer	main_importer;
@@ -414,7 +423,7 @@ WinMain(HINSTANCE	_hInstance,
 
 		LOG("Mesh count : " + std::to_string(current_node->mNumMeshes));
 		LOG("Child count : " + std::to_string(current_node->mNumChildren));
-		for (int i = 0; i < current_node->mNumChildren; ++i)
+		for (unsigned int i = 0; i < current_node->mNumChildren; ++i)
 		{
 			LOG("Child " + std::to_string(i) + " : " + 
 				current_node->mChildren[i]->mName.C_Str());

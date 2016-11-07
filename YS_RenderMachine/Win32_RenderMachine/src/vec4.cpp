@@ -7,7 +7,8 @@ namespace ys_render_machine {
 
 vec4::vec4()
 {
-	memset(E, 0, sizeof(x) * 4); 
+	memset(E, 0, sizeof(x) * 4);
+	w = 1.f;
 }
 
 

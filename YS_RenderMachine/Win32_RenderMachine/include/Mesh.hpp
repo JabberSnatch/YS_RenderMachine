@@ -9,6 +9,8 @@
 namespace ys_render_machine {
 
 
+// NOTE: If we compute animations on a separate stage, the renderer should not
+//		 even care about bones.
 // A Mesh stores a fixed number of vertices and bones.
 // It shouldn't change over time. The protocol here is to create a new Mesh
 // every time we want to compute an animation state or something.
@@ -28,7 +30,11 @@ struct Mesh
 	std::vector<uint32_t>	indices;
 	std::unordered_map<std::string, Bone>	bones;
 
+	vec4 bounds[2];
 };
+
+
+mat4 ComputeDebugView(const Mesh& _mesh, float _fov);
 
 
 }

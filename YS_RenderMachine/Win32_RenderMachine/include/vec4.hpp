@@ -4,7 +4,6 @@
 
 namespace ys_render_machine {
 
-
 // TODO: Possible improvements
 // - Compare performances using either simd intrinsics or standard operators.
 

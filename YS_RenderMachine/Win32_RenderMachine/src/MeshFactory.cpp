@@ -10,11 +10,15 @@
 #include "assimp-3.0/include/assimp/postprocess.h"
 
 #include "Logger.hpp"
+#include "Constants.hpp"
 
 
 namespace ys_render_machine {
 
 
+// NOTE: This function actually does everything needed to render a mesh.
+//		 Produces a Mesh, its associated node(s), a VertexArray, adds everything
+//		 to the scene.
 void
 MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 {
@@ -45,6 +49,7 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		// For each mesh provided by Assimp we produce the matching internal structure.
 		aiMesh*		assimp_mesh = assimp_scene->mMeshes[i];
 		Mesh*		ys_mesh = new Mesh();
+		ys_mesh->bounds[0] = ys_mesh->bounds[1] = vec4();
 
 		// We add any bone data the current mesh might reference.
 		// Structure hierarchy : 
@@ -89,6 +94,16 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 								  assimp_vertex.z);
 
 			ys_mesh->vertices.push_back(ys_vertex);
+
+			// BOUNDS UPDATE
+			for (int i = 0; i < 3; ++i)
+			{
+				if (ys_vertex.E[i] < ys_mesh->bounds[0].E[i])
+					ys_mesh->bounds[0].E[i] = ys_vertex.E[i];// min
+				if (ys_vertex.E[i] > ys_mesh->bounds[1].E[i])
+					ys_mesh->bounds[1].E[i] = ys_vertex.E[i]; // max
+			}
+
 
 			Logger::Log(std::to_string(vertex_index) + " " +
 						std::to_string(ys_vertex.x) + " " + 
@@ -186,6 +201,60 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 			ys_stack.push_back(child_node);
 		}
 	}
+}
+
+
+void
+MeshFactory::DebugLoadArrays(Scene& _scene, const std::string& _name,
+							 float* _vertices, int _stride, int _vsize,
+							 uint32_t* _indices, int _isize)
+{
+	Mesh* ys_mesh = new Mesh();
+	ys_mesh->node = new Node(_name);
+	ys_mesh->bounds[0] = ys_mesh->bounds[1] = vec4();
+
+	int vcount = _vsize / _stride;
+	for (int i = 0; i < vcount; ++i)
+	{
+		vec4 ys_vertex = vec4();
+		for (int j = 0; j < _stride; ++j)
+		{
+			ys_vertex.E[j] = *(_vertices + i * _stride + j);
+
+			if (ys_vertex.E[i] < ys_mesh->bounds[0].E[i])
+				ys_mesh->bounds[0].E[i] = ys_vertex.E[i];// min
+			if (ys_vertex.E[i] > ys_mesh->bounds[1].E[i])
+				ys_mesh->bounds[1].E[i] = ys_vertex.E[i]; // max
+		}
+		ys_mesh->vertices.push_back(ys_vertex);
+	}
+
+	for (int i = 0; i < _isize; ++i)
+	{
+		ys_mesh->indices.push_back(*(_indices + _isize));
+	}
+
+	_scene.root()->AddChild(ys_mesh->node);
+	_scene.meshes().push_back(ys_mesh);
+	VertexArray* vert_array = new VertexArray();
+	vert_array->BindMesh(ys_mesh);
+	_scene.vertex_arrays().push_back(vert_array);
+}
+
+
+mat4
+ComputeDebugView(const Mesh& _mesh, float _fov)
+{
+	float H = _mesh.bounds[1].y - _mesh.bounds[0].y;
+	float W = _mesh.bounds[1].x - _mesh.bounds[0].x;
+	float D = _mesh.bounds[1].z - _mesh.bounds[0].z;
+
+	mat4 view = mat4();
+	view.col[3].x = (_mesh.bounds[0].x + W / 2.f);
+	view.col[3].y = (_mesh.bounds[0].y + H / 2.f);
+	view.col[3].z = (D / 2.f + ((H / 2.f) / (float)tan(_fov* (PI / 180.) / 2.)));
+
+	return view;
 }
 
 

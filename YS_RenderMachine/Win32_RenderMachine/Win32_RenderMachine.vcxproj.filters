@@ -80,5 +80,20 @@
     <ClInclude Include="include\VertexArray.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="external\cube_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\SHADER\default.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\resource\SHADER\default.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="external\stub.stub" />
   </ItemGroup>
 </Project>

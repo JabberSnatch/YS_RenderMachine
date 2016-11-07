@@ -10,7 +10,7 @@ void
 Renderer::Render(const RenderData& _render_data)
 {
 	mat4 projection = mat4::Perspective(0.001f, 1000.f, 60.0f, 16.f / 9.f);
-	mat4 view = mat4::Translation(vec4(0.f, 0.f, 100.f));
+	mat4 view = mat4::Translation(vec4(0.f, 0.f, 5.f)); //_render_data.view;
 	mat4 vp_matrix = projection * view;
 
 	glDisable(GL_BLEND);
@@ -27,10 +27,17 @@ Renderer::Render(const RenderData& _render_data)
 	for (std::vector<VertexArray*>::const_iterator ite = _render_data.meshes.begin();
 		 ite != _render_data.meshes.end(); ++ite)
 	{
-		mat4	mvp_matrix(vp_matrix * (*ite)->model());
+		mat4	model = (*ite)->model();
+		mat4	mvp_matrix(vp_matrix * model);
 
 		glUniformMatrix4fv(_render_data.shader->UniformLocation("mvp_matrix"),
 						   1, GL_FALSE, mvp_matrix.data);
+		//glUniformMatrix4fv(_render_data.shader->UniformLocation("model"),
+		//				   1, GL_FALSE, (*ite)->model().data);
+		//glUniformMatrix4fv(_render_data.shader->UniformLocation("view"),
+		//				   1, GL_FALSE, view.data);
+		//glUniformMatrix4fv(_render_data.shader->UniformLocation("projection"),
+		//				   1, GL_FALSE, projection.data);
 		glBindVertexArray((*ite)->vao());
 		glDrawElements(GL_TRIANGLES, (*ite)->index_count(), 
 					   GL_UNSIGNED_INT, nullptr);
