@@ -53,11 +53,11 @@ Node::remove_child(unsigned int index)
 }
 
 
-mat4
+glm::mat4
 Node::WorldTransform()
 {
-	mat4	result;
-	Node*	cursor = this;
+	glm::mat4	result;
+	Node*		cursor = this;
 
 	while (cursor->HasParent())
 	{

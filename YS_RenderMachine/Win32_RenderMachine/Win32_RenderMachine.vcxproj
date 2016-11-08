@@ -204,7 +204,6 @@ if %errorlevel% leq 1 exit 0 else exit %errorlevel%
     <ClInclude Include="external\cube_data.h" />
     <ClInclude Include="include\Constants.hpp" />
     <ClInclude Include="include\Logger.hpp" />
-    <ClInclude Include="include\mat4.hpp" />
     <ClInclude Include="include\Mesh.hpp" />
     <ClInclude Include="include\MeshFactory.hpp" />
     <ClInclude Include="include\Node.hpp" />
@@ -212,8 +211,9 @@ if %errorlevel% leq 1 exit 0 else exit %errorlevel%
     <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\Shader.hpp" />
     <ClInclude Include="include\ShaderFactory.hpp" />
-    <ClInclude Include="include\vec4.hpp" />
     <ClInclude Include="include\VertexArray.hpp" />
+    <ClInclude Include="include\_mat4.hpp" />
+    <ClInclude Include="include\_vec4.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\resource\SHADER\default.frag" />

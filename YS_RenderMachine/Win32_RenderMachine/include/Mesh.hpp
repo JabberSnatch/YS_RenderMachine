@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <string>
+#include "glm/vec4.hpp"
 #include "Node.hpp"
 
 
@@ -26,15 +27,15 @@ struct Mesh
 	};
 
 	Node*					node;
-	std::vector<vec4>		vertices;
+	std::vector<glm::vec4>	vertices;
 	std::vector<uint32_t>	indices;
 	std::unordered_map<std::string, Bone>	bones;
 
-	vec4 bounds[2];
+	glm::vec4				bounds[2];
 };
 
 
-mat4 ComputeDebugView(const Mesh& _mesh, float _fov);
+glm::mat4 ComputeDebugView(const Mesh& _mesh, float _fov);
 
 
 }

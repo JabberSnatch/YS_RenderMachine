@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "mat4.hpp"
+#include "glm/matrix.hpp"
 
 
 namespace ys_render_machine {
@@ -22,10 +22,10 @@ class Node
 {
 public:
 	Node() 
-		: m_name(""), m_parent(nullptr), m_index_in_parent(0) 
+		: m_name(""), m_parent(nullptr), m_index_in_parent(0), m_transform(1.f)
 	{}
 	Node(const std::string& _name)
-		: m_name(_name), m_parent(nullptr), m_index_in_parent(0)
+		: m_name(_name), m_parent(nullptr), m_index_in_parent(0), m_transform(1.f)
 	{}
 
 	// SetParent calls remove_child on the Node current parent, 
@@ -39,7 +39,7 @@ public:
 
 	// WorldTransform runs through the Node's hierarchy and computes the transform
 	// of the Node relative to the identity transform.
-	mat4				WorldTransform();
+	glm::mat4			WorldTransform();
 
 	bool				HasParent() const { return m_parent != nullptr; }
 	bool				HasChildren() const { return !m_children.empty(); }
@@ -51,7 +51,7 @@ public:
 	const std::string&	name() const { return m_name; }
 	Node*				parent() const { return m_parent; }
 	std::vector<Node*>&	children() { return m_children; }
-	mat4&				transform() { return m_transform; }
+	glm::mat4&			transform() { return m_transform; }
 	
 private:
 	// remove_child does the dirty work of SetParent. It pushes the child
@@ -66,7 +66,7 @@ private:
 
 	std::vector<Node*>	m_children;
 
-	mat4				m_transform;
+	glm::mat4			m_transform;
 
 };
 

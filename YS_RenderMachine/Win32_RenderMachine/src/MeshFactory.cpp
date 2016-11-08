@@ -9,6 +9,8 @@
 #include "assimp-3.0/include/assimp/types.h"
 #include "assimp-3.0/include/assimp/postprocess.h"
 
+#include "glm/gtc/type_ptr.hpp"
+
 #include "Logger.hpp"
 #include "Constants.hpp"
 
@@ -49,7 +51,7 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		// For each mesh provided by Assimp we produce the matching internal structure.
 		aiMesh*		assimp_mesh = assimp_scene->mMeshes[i];
 		Mesh*		ys_mesh = new Mesh();
-		ys_mesh->bounds[0] = ys_mesh->bounds[1] = vec4();
+		ys_mesh->bounds[0] = ys_mesh->bounds[1] = glm::vec4(0.f, 0.f, 0.f, 1.f);
 
 		// We add any bone data the current mesh might reference.
 		// Structure hierarchy : 
@@ -89,19 +91,20 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 			 vertex_index < assimp_mesh->mNumVertices; ++vertex_index)
 		{
 			aiVector3D	assimp_vertex = assimp_mesh->mVertices[vertex_index];
-			vec4		ys_vertex(assimp_vertex.x, 
+			glm::vec4	ys_vertex(assimp_vertex.x, 
 								  assimp_vertex.y, 
-								  assimp_vertex.z);
+								  assimp_vertex.z,
+								  1.f);
 
 			ys_mesh->vertices.push_back(ys_vertex);
 
 			// BOUNDS UPDATE
 			for (int i = 0; i < 3; ++i)
 			{
-				if (ys_vertex.E[i] < ys_mesh->bounds[0].E[i])
-					ys_mesh->bounds[0].E[i] = ys_vertex.E[i];// min
-				if (ys_vertex.E[i] > ys_mesh->bounds[1].E[i])
-					ys_mesh->bounds[1].E[i] = ys_vertex.E[i]; // max
+				if (ys_vertex[i] < ys_mesh->bounds[0][i])
+					ys_mesh->bounds[0][i] = ys_vertex[i];// min
+				if (ys_vertex[i] > ys_mesh->bounds[1][i])
+					ys_mesh->bounds[1][i] = ys_vertex[i]; // max
 			}
 
 
@@ -162,7 +165,7 @@ MeshFactory::LoadIntoScene(Scene& _scene, const std::string& _file)
 		// Assimp seems to store matrices in a row major format.
 		aiMatrix4x4		intermediate_matrix = assimp_node->mTransformation;
 		intermediate_matrix = intermediate_matrix.Transpose();
-		memcpy(ys_node->transform().data,
+		memcpy(glm::value_ptr(ys_node->transform()),
 			   &intermediate_matrix.a1,
 			   sizeof(float) * 16);
 
@@ -211,27 +214,27 @@ MeshFactory::DebugLoadArrays(Scene& _scene, const std::string& _name,
 {
 	Mesh* ys_mesh = new Mesh();
 	ys_mesh->node = new Node(_name);
-	ys_mesh->bounds[0] = ys_mesh->bounds[1] = vec4();
+	ys_mesh->bounds[0] = ys_mesh->bounds[1] = glm::vec4(0.f, 0.f, 0.f, 1.0f);
 
 	int vcount = _vsize / _stride;
 	for (int i = 0; i < vcount; ++i)
 	{
-		vec4 ys_vertex = vec4();
+		glm::vec4 ys_vertex = glm::vec4(0.f, 0.f, 0.f, 1.0f);
 		for (int j = 0; j < _stride; ++j)
 		{
-			ys_vertex.E[j] = *(_vertices + i * _stride + j);
+			ys_vertex[j] = *(_vertices + i * _stride + j);
 
-			if (ys_vertex.E[i] < ys_mesh->bounds[0].E[i])
-				ys_mesh->bounds[0].E[i] = ys_vertex.E[i];// min
-			if (ys_vertex.E[i] > ys_mesh->bounds[1].E[i])
-				ys_mesh->bounds[1].E[i] = ys_vertex.E[i]; // max
+			if (ys_vertex[j] < ys_mesh->bounds[0][j])
+				ys_mesh->bounds[0][j] = ys_vertex[j];// min
+			if (ys_vertex[j] > ys_mesh->bounds[1][j])
+				ys_mesh->bounds[1][j] = ys_vertex[j]; // max
 		}
 		ys_mesh->vertices.push_back(ys_vertex);
 	}
 
 	for (int i = 0; i < _isize; ++i)
 	{
-		ys_mesh->indices.push_back(*(_indices + _isize));
+		ys_mesh->indices.push_back(*(_indices + i));
 	}
 
 	_scene.root()->AddChild(ys_mesh->node);
@@ -242,17 +245,17 @@ MeshFactory::DebugLoadArrays(Scene& _scene, const std::string& _name,
 }
 
 
-mat4
+glm::mat4
 ComputeDebugView(const Mesh& _mesh, float _fov)
 {
 	float H = _mesh.bounds[1].y - _mesh.bounds[0].y;
 	float W = _mesh.bounds[1].x - _mesh.bounds[0].x;
 	float D = _mesh.bounds[1].z - _mesh.bounds[0].z;
 
-	mat4 view = mat4();
-	view.col[3].x = (_mesh.bounds[0].x + W / 2.f);
-	view.col[3].y = (_mesh.bounds[0].y + H / 2.f);
-	view.col[3].z = (D / 2.f + ((H / 2.f) / (float)tan(_fov* (PI / 180.) / 2.)));
+	glm::mat4 view = glm::mat4(1.f);
+	view[3].x = (_mesh.bounds[0].x + W / 2.f);
+	view[3].y = (_mesh.bounds[0].y + H / 2.f);
+	view[3].z = (D / 2.f + ((H / 2.f) / (float)tan(_fov* (PI / 180.) / 2.)));
 
 	return view;
 }

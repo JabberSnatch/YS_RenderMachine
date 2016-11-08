@@ -25,7 +25,7 @@ VertexArray::~VertexArray()
 void
 VertexArray::BindMesh(const Mesh* _source)
 {
-	m_vertex_buffer_size = _source->vertices.size() * sizeof(vec4);
+	m_vertex_buffer_size = _source->vertices.size() * sizeof(glm::vec4);
 	m_index_count = _source->indices.size();
 
 	glNamedBufferStorage(vbo(), m_vertex_buffer_size,

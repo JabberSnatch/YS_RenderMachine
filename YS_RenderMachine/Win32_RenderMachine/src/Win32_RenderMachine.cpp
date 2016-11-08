@@ -16,8 +16,8 @@
 #include "assimp-3.0/include/assimp/mesh.h"
 #include "assimp-3.0/include/assimp/types.h"
 
-#include "vec4.hpp"
-#include "mat4.hpp"
+#include "_vec4.hpp"
+#include "_mat4.hpp"
 #include "Node.hpp"
 #include "Scene.hpp"
 #include "Logger.hpp"

@@ -23,7 +23,7 @@ public:
 		std::vector<VertexArray*>	meshes;
 		Shader*						shader;
 		
-		mat4						view;
+		glm::mat4					view;
 
 		// We don't really want the mesh's vertex data here.
 		// All we care about is each mesh VAO so we should probably provide

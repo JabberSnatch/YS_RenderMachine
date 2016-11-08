@@ -1,4 +1,4 @@
-#include "mat4.hpp"
+#include "_mat4.hpp"
 
 #include <memory>
 
@@ -34,6 +34,7 @@ mat4
 mat4::operator * (const mat4& _other)
 {
 	mat4	result;
+#if 0
 	mat4	transposed = *this;
 	transposed.Transpose();
 
@@ -45,6 +46,24 @@ mat4::operator * (const mat4& _other)
 				transposed.col[row].Dot(_other.col[column]);
 		}
 	}
+#else
+	result.col[0] = (col[0] * _other.col[0].x) + 
+					(col[1] * _other.col[0].y) + 
+					(col[2] * _other.col[0].z) +
+					(col[3] * _other.col[0].w);
+	result.col[1] = (col[0] * _other.col[1].x) +
+					(col[1] * _other.col[1].y) +
+					(col[2] * _other.col[1].z) +
+					(col[3] * _other.col[1].w);
+	result.col[2] = (col[0] * _other.col[2].x) +
+					(col[1] * _other.col[2].y) +
+					(col[2] * _other.col[2].z) +
+					(col[3] * _other.col[2].w);
+	result.col[3] = (col[0] * _other.col[3].x) +
+					(col[1] * _other.col[3].y) +
+					(col[2] * _other.col[3].z) +
+					(col[3] * _other.col[3].w);
+#endif
 
 	return result;
 }
@@ -79,13 +98,14 @@ mat4::Frustum(float _near, float _far, float _width, float _height)
 	float	w = _near / (_width / 2.0f);
 	float	h = _near / (_height / 2.0f);
 	float	q = -(_far + _near) / depth;
-	float	qn = 2 * (_far + _near) / depth;
+	float	qn = -2.f * (_far * _near) / depth;
 	
 	result.col[0].x = w;
 	result.col[1].y = h;
 	result.col[2].z = q;
 	result.col[2].w = -1.0f;
 	result.col[3].z = qn;
+	result.col[3].w = 0.0f;
 
 	return result;
 }
@@ -94,11 +114,35 @@ mat4::Frustum(float _near, float _far, float _width, float _height)
 mat4
 mat4::Perspective(float _near, float _far, float _fov, float _ratio)
 {
+#if 0
 	float height = 2 * _near * (float)tan(_fov * (PI / 360.f));
 	float width = height * _ratio;
-
+	
 	return Frustum(_near, _far, width, height);
+
+#else
+	// KNOWN TO WORK (YOLORenderSQUAD)
+	mat4	result;
+
+	float xymax = _near * (float)tan(_fov * (PI / 360.f));
+	float width = 2 * xymax;
+	float depth = _far - _near;
+	float q = -(_far + _near) / depth;
+	float qn = -2.f * _far * _near / depth;
+	float w = (2.f * _near / width) / _ratio;
+	float h = 2.f * _near / width;
+	
+	result.col[0].x = w;
+	result.col[1].y = h;
+	result.col[2].z = q;
+	result.col[2].w = -1.f;
+	result.col[3].z = qn;
+	result.col[3].w = 0.f;
+	
+	return result;
+#endif
 }
+
 
 
 }

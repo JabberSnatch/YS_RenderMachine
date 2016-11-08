@@ -19,6 +19,9 @@ struct vec4
 
 	float	Dot(const vec4& _other) const;
 
+	vec4	operator * (const float& _scalar);
+	vec4	operator + (const vec4& _other);
+
 	vec4&	operator = (const vec4& _other) = default;
 	vec4&	operator = (vec4&& _other) = default;
 

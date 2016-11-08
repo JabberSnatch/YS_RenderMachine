@@ -1,7 +1,7 @@
 #ifndef __YS_MAT4_HPP__
 #define __YS_MAT4_HPP__
 
-#include "vec4.hpp"
+#include "_vec4.hpp"
 
 
 namespace ys_render_machine {

@@ -1,4 +1,4 @@
-#include "vec4.hpp"
+#include "_vec4.hpp"
 
 #include <memory>
 
@@ -21,6 +21,20 @@ float
 vec4::Dot(const vec4& _other) const
 {
 	return x * _other.x + y * _other.y + z * _other.z + w * _other.w;
+}
+
+
+vec4
+vec4::operator * (const float& _scalar)
+{
+	return vec4(x * _scalar, y * _scalar, z * _scalar, w * _scalar);
+}
+
+
+vec4
+vec4::operator + (const vec4& _other)
+{
+	return vec4(x + _other.x, y + _other.y, z + _other.z, w + _other.w);
 }
 
 
