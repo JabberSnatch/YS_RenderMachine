@@ -11,15 +11,15 @@ namespace ys_render_machine {
 void
 Renderer::Render(const RenderData& _render_data)
 {
-	glm::mat4 projection = glm::perspectiveFov(60.f, 1280.f, 720.f, 0.001f, 1000.f);
-	glm::mat4 view = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 1.f, -1.f));
-	//glm::mat4 view = _render_data.view;
+	glm::mat4 projection = glm::perspective(60.f, 16.f / 9.f, 0.001f, 1000.f);
+	//glm::mat4 view = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, -1.f));
+	glm::mat4 view = _render_data.view;
 	glm::mat4 vp_matrix = projection * view;
 
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glClearColor(.0f, .0f, .0f, 1.f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -34,7 +34,7 @@ Renderer::Render(const RenderData& _render_data)
 		glm::mat4	mvp_matrix(vp_matrix * model);
 
 		glUniformMatrix4fv(_render_data.shader->UniformLocation("mvp_matrix"),
-						   1, GL_TRUE, glm::value_ptr(mvp_matrix));
+						   1, GL_FALSE, glm::value_ptr(mvp_matrix));
 		//glUniformMatrix4fv(_render_data.shader->UniformLocation("model"),
 		//				   1, GL_FALSE, (*ite)->model().data);
 		//glUniformMatrix4fv(_render_data.shader->UniformLocation("view"),

@@ -248,14 +248,17 @@ MeshFactory::DebugLoadArrays(Scene& _scene, const std::string& _name,
 glm::mat4
 ComputeDebugView(const Mesh& _mesh, float _fov)
 {
-	float H = _mesh.bounds[1].y - _mesh.bounds[0].y;
 	float W = _mesh.bounds[1].x - _mesh.bounds[0].x;
+	float H = _mesh.bounds[1].y - _mesh.bounds[0].y;
 	float D = _mesh.bounds[1].z - _mesh.bounds[0].z;
 
+	float half_fov = _fov * 0.5f;
+	float expected_distance = (H * 0.5f) / (float)tan(half_fov * (PI / 180.f));
+
 	glm::mat4 view = glm::mat4(1.f);
-	view[3].x = (_mesh.bounds[0].x + W / 2.f);
-	view[3].y = (_mesh.bounds[0].y + H / 2.f);
-	view[3].z = (D / 2.f + ((H / 2.f) / (float)tan(_fov* (PI / 180.) / 2.)));
+	view[3].x = -(_mesh.bounds[0].x + W / 2.f);
+	view[3].y = -(_mesh.bounds[0].y + H / 2.f);
+	view[3].z = _mesh.bounds[0].z - expected_distance;
 
 	return view;
 }
