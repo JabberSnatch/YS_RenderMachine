@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <windowsx.h>
 
+#include <type_traits>
 #include <iostream>
 #include <memory>
 #include <cassert>
@@ -37,7 +38,7 @@
 // [ ] Basic scene display
 	// [X] Shader loading (consider SPIR-V, subroutines)
 	// [P] Uniform Blocks
-	// [ ] VBO, IBO, VAO
+	// [X] VBO, IBO, VAO
 	// [ ] Skinned Mesh -> Static Mesh conversion
 	// [ ] Rendering pipeline
 
@@ -77,6 +78,8 @@ WinMain(HINSTANCE	_hInstance,
 		LPSTR		_lpCmdLine,
 		int			_nCmdShow)
 {
+
+
 	int i;
 	std::cin >> i;
 
@@ -162,6 +165,30 @@ WinMain(HINSTANCE	_hInstance,
 
 	// TEST AREA
 	ys_render_machine::Logger::ClearAll();
+
+	// CLASSES STATUS
+	{
+		#define SHOW_POD(class_name, channel) \
+		{\
+		std::is_pod<##class_name> is_pod;\
+		ys_render_machine::Logger::Log(#class_name " : " + std::to_string(is_pod()), \
+									   channel);\
+		}\
+
+		using namespace ys_render_machine;
+		Logger::LogChannel channel = Logger::LogChannel::kChannelAutoTests;
+
+		SHOW_POD(Logger, channel);
+		SHOW_POD(Mesh, channel);
+		SHOW_POD(MeshFactory, channel);
+		SHOW_POD(Node, channel);
+		SHOW_POD(Scene, channel);
+		SHOW_POD(Renderer, channel);
+		SHOW_POD(Shader, channel);
+		SHOW_POD(ShaderStage, channel);
+		SHOW_POD(VertexArray, channel);
+		SHOW_POD(Viewport, channel);
+	}
 
 	// MAT4
 	ys_render_machine::mat4		mat_A, mat_B, mat_C;

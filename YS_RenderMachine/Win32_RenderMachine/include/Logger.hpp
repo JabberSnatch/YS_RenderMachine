@@ -19,6 +19,8 @@ public:
 		kChannelRenderer,
 		kChannelMeshFactory,
 		
+		kChannelAutoTests,
+
 		kChannelCount,
 		kChannelCustom,
 		kChannelStdOut
