@@ -16,6 +16,8 @@
 #include "assimp-3.0/include/assimp/mesh.h"
 #include "assimp-3.0/include/assimp/types.h"
 
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "_vec4.hpp"
 #include "_mat4.hpp"
 #include "Node.hpp"
@@ -161,14 +163,17 @@ WinMain(HINSTANCE	_hInstance,
 	// TEST AREA
 	ys_render_machine::Logger::ClearAll();
 
+	// MAT4
 	ys_render_machine::mat4		mat_A, mat_B, mat_C;
 	mat_A.col[3].x = 3.0f;
 	mat_B.col[3].y = 4.0f;
 	mat_C = mat_A * mat_B;
 
+	// SHADER STAGE
 	ys_render_machine::ShaderStage test_shader_stage(GL_VERTEX_SHADER);
 	test_shader_stage.CompileFile("resource/SHADER/default.vert");
 
+	// SHADER
 	ys_render_machine::Shader test_shader;
 	test_shader.Link();
 	test_shader.AddShaderStage(&test_shader_stage);
@@ -176,6 +181,7 @@ WinMain(HINSTANCE	_hInstance,
 	test_shader.Enable();
 	test_shader.Disable();
 
+	// VEC4
 	ys_render_machine::vec4 test_vec;
 	test_vec.x = 1.0f;
 	test_vec.y = 2.0f;
@@ -185,6 +191,7 @@ WinMain(HINSTANCE	_hInstance,
 	ys_render_machine::mat4 test_mat;
 	test_mat.col[0] = ys_render_machine::vec4();
 
+	// NODES
 	ys_render_machine::Node 
 		node_A("node_A"), 
 		node_B("node_B"),
@@ -215,7 +222,7 @@ WinMain(HINSTANCE	_hInstance,
 	// We can get back to a proper tree simply with the following line :
 	node_D.SetParent(nullptr);
 
-
+	// SCENE
 	ys_render_machine::Scene*	test_scene = new ys_render_machine::Scene();
 	delete test_scene;
 
@@ -231,7 +238,6 @@ WinMain(HINSTANCE	_hInstance,
 			node->AddChild(new ys_render_machine::Node(std::to_string(j)));
 		}
 	}
-
 	delete test_scene;
 
 	// Core classes :
@@ -239,9 +245,7 @@ WinMain(HINSTANCE	_hInstance,
 	// Scene
 	// Renderer::RenderData
 
-	//std::string			path = "resource/Sora/Anti Sora.dae";
-	//std::string			path = "resource/SquallFFVIII/Squall.dae";
-	std::string			path = "resource/Leon/Leon.dae";
+	std::string	path = "resource/Leon/Leon.dae";
 	ys_render_machine::Scene loading_scene;
 	//ys_render_machine::MeshFactory::LoadIntoScene(loading_scene, path);
 	ys_render_machine::MeshFactory::DebugLoadArrays(loading_scene, "Cube", 
@@ -257,24 +261,52 @@ WinMain(HINSTANCE	_hInstance,
 	default_shader.AddShaderStage(&default_fragment);
 	default_shader.Link();
 
-	ys_render_machine::Renderer::RenderData		render_data;
-	render_data.viewport.x = 0;
-	render_data.viewport.y = 0;
-	render_data.viewport.width = win_width;
-	render_data.viewport.height = win_height;
-	render_data.view = 
-		ys_render_machine::ComputeDebugView(*loading_scene.meshes()[0], 
-											60.0f);
 
-	render_data.shader = &default_shader;
-
-	ys_render_machine::Renderer::PrepareRenderData(loading_scene, render_data);
-	
-	while (true)
+	ys_render_machine::Renderer::RenderData render_data;
 	{
+		using namespace ys_render_machine;
+		Renderer::RenderData& o_render_data = render_data;
+		o_render_data.viewport.x = 0;
+		o_render_data.viewport.y = 0;
+		o_render_data.viewport.width = win_width;
+		o_render_data.viewport.height = win_height;
+		o_render_data.shader = &default_shader;
+		o_render_data.projection =
+			glm::perspective(60.f, 16.f / 9.f, 0.001f, 1000.f);
+		o_render_data.view =
+			ys_render_machine::ComputeDebugView(*loading_scene.meshes()[0], 
+												60.0f);
+	
+		Scene& _scene = loading_scene;
+		std::vector<VertexArray*>& vertex_arrays = _scene.vertex_arrays();
+		for (std::vector<VertexArray*>::iterator ite = vertex_arrays.begin();
+			 ite != vertex_arrays.end(); ++ite)
+		{
+			(*ite)->UpdateBuffers();
+			o_render_data.meshes.push_back(*ite);
+		}
+	}
+	
+
+	MSG	msg = { 0 };
+	while (msg.message != WM_QUIT)
+	{
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		//RedrawWindow(h_wnd, NULL, NULL, RDW_INTERNALPAINT);
 		ys_render_machine::Renderer::Render(render_data);
 		::SwapBuffers(device_context);
+		::Sleep(10);
 	}
+
+
+	// /!\==/!\==/!\==/!\==/!\==/!\==/!\
+	// No meaningful processing past this point.
+	// /!\==/!\==/!\==/!\==/!\==/!\==/!\
 
 	// ASSIMP TESTS
 	Assimp::Importer	main_importer;
