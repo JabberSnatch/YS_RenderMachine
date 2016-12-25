@@ -19,9 +19,10 @@ const std::string	Logger::available_log_files[] = {
 };
 
 
-void
+void 
 Logger::Log(const std::string& _msg, LogChannel _channel)
 {
+#if _DEBUG
 	if (_channel == kChannelStdOut)
 	{
 		std::cout << _msg << std::endl;
@@ -43,6 +44,8 @@ Logger::Log(const std::string& _msg, LogChannel _channel)
 		output_stream << _msg << std::endl;
 		output_stream.close();
 	}
+#else
+#endif
 }
 
 

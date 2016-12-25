@@ -55,7 +55,7 @@ public:
 	
 private:
 	// remove_child does the dirty work of SetParent. It pushes the child
-	// back to m_children last position and pops it.
+	// back to m_children's last position and pops it.
 	// It also updates the removed child's parent to be nullptr.
 	void				remove_child(unsigned int index);
 
@@ -66,6 +66,8 @@ private:
 
 	std::vector<Node*>	m_children;
 
+	/// The transform of the node relative to its parent.
+	/// If it has no parent it is relative to the canonical frame.
 	glm::mat4			m_transform;
 
 };

@@ -27,10 +27,12 @@ struct Mesh
 	};
 
 	Node*					node;
+
 	std::vector<glm::vec4>	vertices;
 	std::vector<uint32_t>	indices;
 	std::unordered_map<std::string, Bone>	bones;
 
+	/// Axis-aligned bounding box. Computed upon cretaion.
 	glm::vec4				bounds[2];
 };
 

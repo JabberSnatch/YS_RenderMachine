@@ -8,6 +8,8 @@
 namespace ys_render_machine {
 
 
+/// A VertexArray instance should be created every time a mesh is instanced in
+/// a scene to be displayed.
 class VertexArray
 {
 public:

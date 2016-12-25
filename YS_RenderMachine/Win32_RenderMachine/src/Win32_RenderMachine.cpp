@@ -151,7 +151,7 @@ WinMain(HINSTANCE	_hInstance,
 		{
 			HGLRC	intermediate = gl_render_context;
 			gl_render_context =
-				wglCreateContextAttribsARB(device_context, 0, gl_attributes);
+				wglCreateContextAttribsARB(device_context, 0, nullptr);// gl_attributes);
 			wglMakeCurrent(NULL, NULL);
 			wglDeleteContext(intermediate);
 			wglMakeCurrent(device_context, gl_render_context);
@@ -278,6 +278,7 @@ WinMain(HINSTANCE	_hInstance,
 	ys_render_machine::MeshFactory::DebugLoadArrays(loading_scene, "Cube", 
 		ys_primitives::ys_cube_vertex, 3, 3 * 8,
 		ys_primitives::ys_cube_indices, 3 * 2 * 6);
+
 
 	ys_render_machine::ShaderStage	default_vertex(GL_VERTEX_SHADER);
 	default_vertex.CompileFile("resource/SHADER/default.vert");
