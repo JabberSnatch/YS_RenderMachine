@@ -22,7 +22,7 @@ const std::string	Logger::available_log_files[] = {
 void 
 Logger::Log(const std::string& _msg, LogChannel _channel)
 {
-#if _DEBUG
+#if _DEBUG & 0
 	if (_channel == kChannelStdOut)
 	{
 		std::cout << _msg << std::endl;

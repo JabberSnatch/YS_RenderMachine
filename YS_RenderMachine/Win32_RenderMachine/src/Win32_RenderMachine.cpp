@@ -25,9 +25,11 @@
 #include "Scene.hpp"
 #include "Logger.hpp"
 #include "MeshFactory.hpp"
+#include "TextureFactory.hpp"
 #include "Shader.hpp"
 #include "Renderer.hpp"
 #include "external/cube_data.h"
+
 
 
 // TODO:
@@ -35,6 +37,9 @@
 	// [X] Basic data structures (vec4, mat4, Node, Scene)
 	// [X] Rendering data structures (Mesh, Bone)
 	// [X] Assimp -> ys_RenderMachine conversion
+// [ ] Textures
+	// [ ] 2D
+	// [ ] Cubemaps
 // [ ] Basic scene display
 	// [X] Shader loading (consider SPIR-V, subroutines)
 	// [P] Uniform Blocks
@@ -279,6 +284,8 @@ WinMain(HINSTANCE	_hInstance,
 		ys_primitives::ys_cube_vertex, 3, 3 * 8,
 		ys_primitives::ys_cube_indices, 3 * 2 * 6);
 
+	path = "resource/Leon/texture000.png";
+	ys_render_machine::TextureFactory::LoadIntoScene(loading_scene, path);
 
 	ys_render_machine::ShaderStage	default_vertex(GL_VERTEX_SHADER);
 	default_vertex.CompileFile("resource/SHADER/default.vert");
@@ -331,6 +338,7 @@ WinMain(HINSTANCE	_hInstance,
 		::Sleep(10);
 	}
 
+	return 0;
 
 	// /!\==/!\==/!\==/!\==/!\==/!\==/!\
 	// No meaningful processing past this point.

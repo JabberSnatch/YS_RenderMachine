@@ -59,6 +59,18 @@ Scene::~Scene()
 	{
 		delete *ite;
 	}
+
+	for (std::vector<VertexArray*>::iterator ite = m_vertex_arrays.begin();
+		 ite != m_vertex_arrays.end(); ++ite)
+	{
+		delete *ite;
+	}
+
+	for (std::vector<Texture*>::iterator ite = m_textures.begin();
+		 ite != m_textures.end(); ++ite)
+	{
+		delete *ite;
+	}
 }
 
 
